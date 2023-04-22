@@ -1,16 +1,19 @@
 const path = require('path');
 const express = require('express');
 const app = express();
-
+const apiController = require('./apiController');
 const PORT = 3000;
-
-//route for API handling
-const apiRouter = require('./API.js');
 
 //start server-serve index.html
 app.get('/', (req, res) => {
+  console.log('help');
+  console.log(path.join__dirname);
+
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
+
+// route for API handling
+app.use('/api', apiController);
 
 //local error handler
 app.use((req, res) => {
