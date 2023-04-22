@@ -6,9 +6,6 @@ const PORT = 3000;
 
 //start server-serve index.html
 app.get('/', (req, res) => {
-  console.log('help');
-  console.log(path.join__dirname);
-
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
