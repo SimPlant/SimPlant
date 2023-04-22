@@ -30,17 +30,24 @@ const userID = 1;
 /* (userID: number) ->  user: object */
 function getUser(userID) {
   // query db with userID
-  const values = [userID];
+  // console.log('userId', userID)
   const query = 'SELECT * FROM public.user WHERE _id = $1;';
-  db.query(query, values, (err, result)=>{
+  db.query(query, [userID]) 
+  .then((res, err) => {
+
+    // console.log('inside', result)
     if (err) {
       return localErrorHandler('getUser', err);
     }
-    return result;
+    // console.log('after', result);
+    return res;
   });
 }
 
-console.log(getUser(1));
+(async () => {
+  const result = await getUser(1);
+  console.log('outside', result);
+})()
 
 //add user: 
 /* adds user to db and returns new user */
