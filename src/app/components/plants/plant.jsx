@@ -1,5 +1,5 @@
 import React from 'react';
- import './plantStyle.scss'
+import './plantStyle.scss'
 
 const Plant = (props) => {
   const { species, 
