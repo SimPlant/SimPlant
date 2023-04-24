@@ -35,25 +35,25 @@ $shadow_opacity30: color.adjust($shadow, $alpha: -0.3);
 
 $borderRadius: 12px;
 
-@font-face {
-  font-family: 'Vegur';
-  src: url('./fonts/vegur/Vegur-Regular.otf') format('opentype');
-}
+// @font-face {
+//   font-family: 'Vegur';
+//   src: url('./fonts/vegur/Vegur-Regular.otf') format('opentype');
+// }
 
-@font-face {
-  font-family: 'Cabin Sketch';
-  src: url('fonts/cabinSketch/CabinSketch-Regular.ttf') format('truetype');
-}
+// @font-face {
+//   font-family: 'Cabin Sketch';
+//   src: url('fonts/cabinSketch/CabinSketch-Regular.ttf') format('truetype');
+// }
 
-@font-face {
-  font-family: 'Happy Marker';
-  src: url('fonts/happyMarkers/Happy markers.otf') format('opentype');
-}
+// @font-face {
+//   font-family: 'Happy Marker';
+//   src: url('fonts/happyMarkers/Happy markers.otf') format('opentype');
+// }
 
-@font-face {
-  font-family: 'BP Replay';
-  src: url('fonts/BPreplay/BPreplay.otf') format('opentype');
-}
+// @font-face {
+//   font-family: 'BP Replay';
+//   src: url('fonts/BPreplay/BPreplay.otf') format('opentype');
+// }
 
 $title: 'Cabin Sketch';
 $secondaryTitle: 'Happy Marker';
