@@ -3,7 +3,7 @@ import './headerStyle.scss';
 
 function Header() {
   return (
-    <header>
+    <header id="header">
       <h1>SimPlant</h1>
     </header>
   );

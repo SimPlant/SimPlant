@@ -14,6 +14,11 @@ export default function Room() {
   return (
     <div id="roomContainer">
       <Plant plant={plant}/>
+      <Plant plant={plant}/>
+      <Plant plant={plant}/>
+      <Plant plant={plant}/>
+      <Plant plant={plant}/>
+      <Plant plant={plant}/>
     </div>
   );
 }
