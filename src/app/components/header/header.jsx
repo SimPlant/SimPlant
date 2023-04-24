@@ -3,9 +3,9 @@ import './headerStyle.scss';
 
 function Header() {
   return (
-    <div className="header">
-      <header>SimPlant</header>
-    </div>
+    <header>
+      <h1>SimPlant</h1>
+    </header>
   );
 }
 
