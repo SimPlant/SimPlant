@@ -111,7 +111,7 @@ export default apiWrapper = {
   // })();
 
   /* gets all rooms of user from db and returns all rooms */
-  /* (userID: number) -> rooms: Promise<array> */
+  /* (userID: number) -> rooms: Promise<array<object>> */
   getAllRooms: async (userID) => {
     try {
       const query = `SELECT * FROM public.room
@@ -216,7 +216,7 @@ export default apiWrapper = {
   // })();
 
   /* gets and returns all plants of a given user from db */
-  /* (userID: number) -> plants: Promise<array> */
+  /* (userID: number) -> plants: Promise<array<object>> */
   getAllPlantsByUser: async (userID) => {
     try {
       const query = `SELECT * FROM public.plants
@@ -232,7 +232,7 @@ export default apiWrapper = {
   // })();
 
   /* gets and returns all plants in a given room from db */
-  /* (roomID: number) -> plants: Promise<array> */
+  /* (roomID: number) -> plants: Promise<array<object>> */
   getAllPlantsByRoom: async (roomID) => {
     try {
       const query = `SELECT * FROM public.plants
@@ -337,7 +337,7 @@ export default apiWrapper = {
   // })();
 
   /* gets and returns all days of a given user from db */
-  /* (userID: number) -> plants: Promise<array> */
+  /* (userID: number) -> plants: Promise<array<object>> */
   getAllDays: async (userID) => {
     try {
       const query = `SELECT * FROM public.day
@@ -410,7 +410,7 @@ export default apiWrapper = {
   
 
   /* get all plant_watering events of day and return events */
-  /* (dayID: number) -> Promise<array> */
+  /* (dayID: number) -> Promise<array<object>> */
   getAllPlantWateringsByDay: async (dayID) => {
     try{
       const query = `SELECT * FROM public.plant_watering 
@@ -425,7 +425,7 @@ export default apiWrapper = {
   // (async ()=> {console.log('getAllPlantWateringsByDay', await getAllPlantWateringsByDay(1))})();
 
   /* get all plant_watering events of plant and return events */
-  /* (plantID: number) -> Promise<array> */
+  /* (plantID: number) -> Promise<array<object>> */
   getAllPlantWateringsByPlant: async (plantID) => {
     try {
       query = `SELECT * FROM public.plant_watering 
