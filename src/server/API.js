@@ -44,12 +44,13 @@ const getUser = async userID => {
 // })();
  
 /* adds user to db and returns new user */
-/* (username: string, password: string) -> user: Promise<object> */
-const addUser = async (username, password) => {
+/* (user: object) -> user: Promise<object> */
+const addUser = async (user) => {
   try {
+    const { username, password } = user;
     const query = `INSERT INTO public.user (username, password)
                    VALUES ($1, $2)
-                   RETURNING *;`
+                   RETURNING *;`;
     const result = await pool.query(query, [username, password]);
     return result.rows[0];
   } catch (error) {
@@ -57,27 +58,28 @@ const addUser = async (username, password) => {
   }
 }
 // (async () => {
-//   console.log('addUser', await addUser('megan', 'password'));
+//   const user = {username: 'shimmy', password: 'shimmys_password'};
+//   console.log('addUser', await addUser(user));
 // })();
 
 /* update user and return updated user */
-/* (user: object, userID: number) -> user: Promise<object> */
-const updateUser = async (user, userID) => {
-  const { username, password } = user;
+/* (user: object) -> user: Promise<object> */
+const updateUser = async (user) => {
+  const { _id, username, password } = user;
   try {
     const query = `UPDATE public.user
                    SET username = $1, password = $2
                    WHERE _id = $3
                    RETURNING *;`
-    const result = await pool.query(query, [username, password, userID]);
+    const result = await pool.query(query, [username, password, _id]);
     return result.rows[0];
   } catch (error) {
     return localErrorHandler('updateUser', error);
   }
 }
 // (async () => {
-//   const user = {username: 'esther', password:'new_password'}
-//   console.log('updateUser', await updateUser(user, userID));
+//   const user = {_id: 2, username: 'esther', password:'new_password'}
+//   console.log('updateUser', await updateUser(user));
 // })();
 
 /* deletes user from db and returns deleted user */
@@ -400,40 +402,92 @@ const deleteDay = async (dayID) => {
 /**** PLANT_WATERING FUNCTIONS ****/
 
 /* get plant_watering event and returns event */
-/* (plantWateringID: number) -> Promise<object>
-// const getPlantWatering = (plantWateringID) => {
-
+/* (plantWateringID: number) -> Promise<object> */
+const getPlantWatering = async (plantWateringID) => {
+  try{
+    const query =  `SELECT * FROM public.plant_watering WHERE _id = $1;`;
+    const result = await pool.query(query, [plantWateringID]);
+    return result.rows[0];
+  } catch (error) {
+    return localErrorHandler('getPlantWatering', error);
+  }
 }
+// (async () => {
+//   console.log('getPlantWatering', await getPlantWatering(1));
+// })();
+ 
 
 /* get all plant_watering events of day and return events */
-/* (dayID: number) -> Promise<object>
-// const getAllPlantWateringsByDay = (dayID) => {
-
+/* (dayID: number) -> Promise<object> */
+const getAllPlantWateringsByDay = async (dayID) => {
+  try{
+    const query = `SELECT * FROM public.plant_watering 
+                  WHERE day_id = $1;`;
+    const result = await pool.query(query, [dayID]);
+    return result.rows;
+  }
+  catch(error) {
+    return localErrorHandler('getAllPlantWateringsByDay', error);
+  }
 }
+// (async ()=> {console.log('getAllPlantWateringsByDay', await getAllPlantWateringsByDay(1))})();
 
 /* get all plant_watering events of plant and return events */
-/* (plantID: number) -> Promise<object>
-// const getAllPlantWateringsByPlant = (plantID) => {
-
+/* (plantID: number) -> Promise<object> */
+const getAllPlantWateringsByPlant = async (plantID) => {
+  try {
+    query = `SELECT * FROM public.plant_watering 
+            WHERE plants_id = $1;`;
+    const result = await pool.query(query, [plantID]);
+    return result.rows;
+  }
+  catch(error){
+    return localErrorHandler('getAllPlantWateringsByPlant', error);
+  }
 }
+
+// (async () => {
+//   console.log('getAllPlantWateringsByPlant', await getAllPlantWateringsByPlant(1));
+// })();
 
 /* add plant_watering event and return new event */
-/* (plantWatering: object) -> Promise<object>
-// const addPlantWatering = (plantWatering) => {
-
+/* (plantWatering: object) -> Promise<object> */
+const addPlantWatering = async (plantWatering) => {
+  const {plants_id, day_id} = plantWatering;
+  try {
+    //create query
+    const query = `INSERT INTO public.plant_watering (plants_id, day_id) 
+                   VALUES ($1, $2)
+                   RETURNING *;`;
+    const result =  await pool.query(query, [plants_id, day_id]);
+    return result.rows[0];
+  }
+  catch (error) {
+    return localErrorHandler('addPlantWatering', error);
+  }
 }
-
-/* update plant_watering event and return updated event */
-/* (plantWatering: object, plantWateringID: number) -> Promise<object>
-// const addPlantWatering = (plantWatering, plantWateringID) => {
-
-}
+// (async () => {
+//   const plantWatering = {plants_id: 1, day_id: 1};
+//   console.log('addPlantWatering', await addPlantWatering(plantWatering));
+// })();
 
 /* delete plant_watering event and return deleted event */
-/* (plantWateringID: number) -> Promise<object>
-// const deletePlantWatering = (plantWateringID) => {
-
+/* (plantWateringID: number) -> Promise<object> */
+const deletePlantWatering = async (plantWateringID) => {
+  try {
+    const query = `DELETE FROM public.plant_watering
+                    WHERE _id = $1
+                    RETURNING *;`;
+    const result = await pool.query(query, [plantWateringID]);
+    return result.rows[0];
+  } catch(error) {
+    return localErrorHandler('deletePlantWatering', error);
+  }
 }
+
+(async () => {
+  console.log('deletePlantWatering', await deletePlantWatering(1));
+})();
 
 /* local error handler */
 /* (location: string, error: object) -> console.log */ 
