@@ -11,10 +11,9 @@ const Plant = (props) => {
     <div id="plant" className='plants'>
       <p>Species: {species}</p>
       <img className= "plant-img" src="https://em-content.zobj.net/thumbs/160/apple/271/potted-plant_1fab4.png"></img>
-      <p>Species: {species}</p>
-      <p>Watering Frequency: {watering_frequency_per_week}</p>
+      <p>Water {watering_frequency_per_week}x per week</p>
       <p>Humidity: {humidity}%</p>
-      <p>Light: {light}</p>
+      <p>Light: {light}/10</p>
     </div>
   );
 }
