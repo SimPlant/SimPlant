@@ -1,0 +1,29 @@
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  justify-content: flex-start;
+  align-items: center;
+  margin: auto;
+  margin-left: 20px;
+}
+
+.inputForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.roomForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.plantForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
