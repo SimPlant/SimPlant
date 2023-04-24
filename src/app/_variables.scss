@@ -1,22 +1,61 @@
+@use 'sass:color';
+
 $lightPrimary: #E9E3E6;
-$lightPrimary_opacity10: color.adjust($lightPrimary , $alpha: +10%);
+$lightPrimary_opacity10: color.adjust($lightPrimary , $alpha: -0.1);
+$lightPrimary_opacity30: color.adjust($lightPrimary , $alpha: -0.3);
 $midPrimary: #81BC76;
-$midPrimary_opacity10: color.adjust($midPrimary , $alpha: +10%);
+$midPrimary_opacity10: color.adjust($midPrimary , $alpha: -0.1);
+$midPrimary_opacity30: color.adjust($midPrimary , $alpha: -0.3);
 $darkPrimary: #1F6B63;
-$darkPrimary_opacity10: color.adjust($darkPrimary , $alpha: +10%);
+$darkPrimary_opacity10: color.adjust($darkPrimary , $alpha: -0.1);
+$darkPrimary_opacity30: color.adjust($darkPrimary , $alpha: -0.3);
 
 $secondary: #523364;
-$secondary_opacity10: color.adjust($secondary , $alpha: +10%);
+$secondary_opacity10: color.adjust($secondary , $alpha: -0.1);
+$secondary_opacity30: color.adjust($secondary , $alpha: -0.3);
 
 $primaryBlack: #0B1A19;
-$primaryBlack_opacity10: color.adjust($primaryBlack , $alpha: +10%);
+$primaryBlack_opacity10: color.adjust($primaryBlack , $alpha: -0.1);
+$primaryBlack_opacity30: color.adjust($primaryBlack , $alpha: -0.3);
 $secondaryBlack: #0C1D1B;
-$secondaryBlack_opacity10: color.adjust($secondaryBlack , $alpha: +10%);
+$secondaryBlack_opacity10: color.adjust($secondaryBlack , $alpha: -0.1);
+$secondaryBlack_opacity30: color.adjust($secondaryBlack , $alpha: -0.3);
 
 $primaryWhite: #FEFEFE;
-$primaryWhite_opacity10: color.adjust($primaryWhite , $alpha: +10%);
+$primaryWhite_opacity10: color.adjust($primaryWhite , $alpha: -0.1);
+$primaryWhite_opacity30: color.adjust($primaryWhite , $alpha: -0.3);
 $secondaryWhite: #FCFBFB;
-$secondaryWhite_opacity10: color.adjust($secondaryWhite , $alpha: +10%);
+$secondaryWhite_opacity10: color.adjust($secondaryWhite , $alpha: -0.1);
+$secondaryWhite_opacity30: color.adjust($secondaryWhite , $alpha: -0.3);
 
-$shadow: color.adjust(#000000, $alpha: +80%);
-$shadow_opacity10: color.adjust($shadow, $alpha: +10%);
+/* recommend: box-shadow: 0 2px 8px 1px $shadow; */
+$shadow: color.adjust(#000000, $alpha: -0.8);
+$shadow_opacity10: color.adjust($shadow, $alpha: -0.1);
+$shadow_opacity30: color.adjust($shadow, $alpha: -0.3);
+
+$borderRadius: 12px;
+
+@font-face {
+  font-family: 'Vegur';
+  src: url('./fonts/vegur/Vegur-Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Cabin Sketch';
+  src: url('fonts/cabinSketch/CabinSketch-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Happy Marker';
+  src: url('fonts/happyMarkers/Happy markers.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'BP Replay';
+  src: url('fonts/BPreplay/BPreplay.otf') format('opentype');
+}
+
+$title: 'Cabin Sketch';
+$secondaryTitle: 'Happy Marker';
+$mainText: 'BP Replay';
+$inputText: 'Vegur';
