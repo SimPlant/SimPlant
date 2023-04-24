@@ -1,0 +1,22 @@
+$lightPrimary: #E9E3E6;
+$lightPrimary_opacity10: color.adjust($lightPrimary , $alpha: +10%);
+$midPrimary: #81BC76;
+$midPrimary_opacity10: color.adjust($midPrimary , $alpha: +10%);
+$darkPrimary: #1F6B63;
+$darkPrimary_opacity10: color.adjust($darkPrimary , $alpha: +10%);
+
+$secondary: #523364;
+$secondary_opacity10: color.adjust($secondary , $alpha: +10%);
+
+$primaryBlack: #0B1A19;
+$primaryBlack_opacity10: color.adjust($primaryBlack , $alpha: +10%);
+$secondaryBlack: #0C1D1B;
+$secondaryBlack_opacity10: color.adjust($secondaryBlack , $alpha: +10%);
+
+$primaryWhite: #FEFEFE;
+$primaryWhite_opacity10: color.adjust($primaryWhite , $alpha: +10%);
+$secondaryWhite: #FCFBFB;
+$secondaryWhite_opacity10: color.adjust($secondaryWhite , $alpha: +10%);
+
+$shadow: color.adjust(#000000, $alpha: +80%);
+$shadow_opacity10: color.adjust($shadow, $alpha: +10%);
