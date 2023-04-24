@@ -1,0 +1,12 @@
+#roomContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 70%;
+  border: 3px solid black;
+  border-radius: 4px;
+  margin: auto;
+  margin-right: 20px;
+}

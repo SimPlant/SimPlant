@@ -1,0 +1,16 @@
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-left: 20px;
+}
+
+.inputForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
