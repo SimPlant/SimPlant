@@ -1,4 +1,12 @@
 @import '../../variables.scss';
+@font-face {
+  font-family: 'Happy Marker';
+  src: url('../../fonts/happyMarkers/Happy markers.otf') format('opentype');
+}
+@font-face {
+  font-family: 'BP Replay';
+  src: url('../../fonts/BPreplay/BPreplay.otf') format('opentype');
+}
 
 .plant {
   height: 255px;
@@ -7,7 +15,6 @@
   padding: 5px;
   padding-top: 3px;
   border-radius: $borderRadius;
-  font-family: sans-serif;
   text-align: center;
   box-shadow: 0 2px 8px 1px $shadow;
 }
@@ -20,9 +27,11 @@
 .plant > p.species {
   font-size: 14px;
   color: $secondaryBlack;
+  font-family: 'Happy Marker', sans-serif;
 }
 
 .plant > p {
   font-size: 12px;
-  color: $secondaryBlack_opacity10
+  color: $secondaryBlack_opacity10;
+  font-family: 'BP Replay', sans-serif;
 }
