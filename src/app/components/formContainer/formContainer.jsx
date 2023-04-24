@@ -5,8 +5,12 @@ export default function FormContainer() {
   return (
     <div className="formContainer">
       <form className="inputForm">
-        <div>FORM</div>
-        <input type="text" placeholder="some info"></input>
+        <div className="formTitle">FORM</div>
+        <input
+          className="inputField"
+          type="text"
+          placeholder="some info"
+        ></input>
         <input type="text" placeholder="some info"></input>
         <input type="text" placeholder="some info"></input>
         <input type="text" placeholder="some info"></input>
