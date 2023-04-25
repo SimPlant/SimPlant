@@ -9,16 +9,16 @@ const plant = {
   light: 5
 }
 
-export default function Room() {
+export default function Room(props) {
+  const plantsToRender = [];
+  // loop thru plantsInCurrRoom array and render plants with props
+  props.plants.forEach(plant => {
+    plantsToRender.push(<Plant plant={plant}/>)
+  })
   
   return (
     <div id="roomContainer">
-      <Plant plant={plant}/>
-      <Plant plant={plant}/>
-      <Plant plant={plant}/>
-      <Plant plant={plant}/>
-      <Plant plant={plant}/>
-      <Plant plant={plant}/>
+      {plantsToRender}
     </div>
   );
 }
