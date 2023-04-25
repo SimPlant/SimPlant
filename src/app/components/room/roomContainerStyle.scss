@@ -1,3 +1,4 @@
+@import '../../_variables.scss';
 #roomContainer {
   display: flex;
   flex-direction: column;
@@ -5,9 +6,10 @@
   align-items: center;
   width: 70%;
   height: 70%;
-  border: 3px solid black;
-  border-radius: 4px;
+  border: 3px solid $darkPrimary;
+  border-radius: $borderRadius;
   margin: auto;
   margin-right: 4rem;
   margin-top: 2rem;
+  box-shadow: 0 2px 8px 1px $shadow;
 }
