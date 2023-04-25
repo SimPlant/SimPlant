@@ -6,7 +6,7 @@ const PORT = 3000;
 
 //start server-serve index.html
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/index.html'));
+  res.send('hello world');
 });
 
 // route for API handling
