@@ -1,18 +1,22 @@
+@import '../../_variables.scss';
+@font-face {
+  font-family: 'Vegur';
+  src: url('../../fonts/vegur/Vegur-Regular.otf') format('opentype');
+}
+
 .formContainer {
   display: flex;
   flex-direction: column;
   width: 30%;
-  justify-content: flex-start;
   align-items: center;
-  margin: auto;
-  margin-left: 20px;
-}
 
-.inputForm {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  button {
+    border-radius: $borderRadius;
+    width: 30%;
+    font-size: 1rem;
+  }
 }
 
 .roomForm {
@@ -20,10 +24,44 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 4rem;
+  border: 1px solid $darkPrimary;
+  border-radius: $borderRadius;
+  padding: 1rem;
+  width: 100%;
+  font-family: 'Vegur';
+  box-shadow: 0 2px 8px 1px $shadow;
 }
 
 .plantForm {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 1px solid $darkPrimary;
+  border-radius: $borderRadius;
+  padding: 1rem;
+  width: 100%;
+  font-family: 'Vegur';
+  box-shadow: 0 2px 8px 1px $shadow;
+}
+
+select {
+  width: 100%;
+  margin-bottom: 1rem;
+  font-family: monospace;
+  padding: 0.5rem;
+  border-radius: $borderRadius;
+}
+
+input {
+  width: 80%;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  border-radius: $borderRadius;
+  padding: 0.5rem;
+}
+
+.formTitle {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
