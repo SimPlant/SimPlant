@@ -1,16 +1,21 @@
 const path = require('path');
 const express = require('express');
 const app = express();
-const apiController = require('./apiController');
+const apiRouter = require('./routers/apiRouter');
+const cookieParser = require('cookie-parser');
 const PORT = 3000;
 
+
+app.use(express.json());
+app.use(cookieParser());
+app.use(express.urlencoded());
 //start server-serve index.html
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 // route for API handling
-app.use('/api', apiController);
+app.use('/api', apiRouter);
 
 //local error handler
 app.use((req, res) => {

@@ -1,7 +1,13 @@
 -- command to connect to db and run script that creates tables
 -- psql -d <elephant-url> -f src/server/simPlant_postgres_create.sql
 
+-- psql -d postgres://vkwlvunh:is1f7C09a_tp7e6cuhWu9rhFAk_dvYhQ@mahmud.db.elephantsql.com/vkwlvunh -f src/server/simPlant_postgres_create.sql
+
+
+
 -- plants
+-- add common name to plant
+-- add temperature range /maybe
 CREATE TABLE public.plants (
   "_id" serial NOT NULL,
   "species" varchar NOT NULL,
