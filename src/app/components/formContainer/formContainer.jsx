@@ -30,31 +30,31 @@ export default function FormContainer() {
         <FormSelect name="plantWatering" property="Watering"/>
         <div className="schedule">
           <div>
-            <label for="">Mon</label>
+            <label htmlFor="">Mon</label>
             <input type="checkbox" name="Mon" value="Mon"></input>
           </div>
           <div>
-            <label for="">Tue</label>
+            <label htmlFor="">Tue</label>
             <input type="checkbox" name="Tue" value="Tue"></input>
           </div>
           <div>
-            <label for="">Wed</label>
+            <label htmlFor="">Wed</label>
             <input type="checkbox" name="Wed" value="Wed"></input>
           </div>
           <div>
-            <label for="">Thur</label>
+            <label htmlFor="">Thur</label>
             <input type="checkbox" name="Thur" value="Thur"></input>
           </div>
           <div>
-            <label for="">Fri</label>
+            <label htmlFor="">Fri</label>
             <input type="checkbox" name="Fri" value="Fri"></input>
           </div>
           <div>
-            <label for="">Sat</label>
+            <label htmlFor="">Sat</label>
             <input type="checkbox" name="Sat" value="Sat"></input>
           </div>
           <div>
-            <label for="">Sun</label>
+            <label htmlFor="">Sun</label>
             <input type="checkbox" name="Sun" value="Sun"></input>
           </div>
         </div>

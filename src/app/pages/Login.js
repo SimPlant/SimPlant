@@ -1,20 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom'
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
 import './LoginStyle.scss';
 
 export default function Login(props) {
-  // const [username, setUsername] = useState();
-  // const [password, setPassword] = useState();
-
-  // const handleClick = async e => {
-  //   const token = await loginUser({
-  //       username,
-  //       password
-  //   });
-  //   props.setLoggedIn(token);
-  // }
+  const username = useRef();
+  const password = useRef();
+  
+  const userLogin = async credentials => {
+    console.log('username: ', username.current.value);
+    console.log('password: ', password.current.value);
+    // fetch call to validate user
+    // const data = await fetch('http://localhost:3000/users', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify(credentials)
+    // })
+    // return data;
+  }
+  
+  const handleClickLogin = async () => {
+    const result = await userLogin({
+        username,
+        password
+    });
+    // if result is true (verified user), set loggedIn to true
+    // props.setLoggedIn(true);
+  }
 
   return (
     <div className='loginPage'>
@@ -31,14 +46,14 @@ export default function Login(props) {
         }}
       />
       {/* database user */}
-      {/* <input id='usernameInput' placeholder='Username' onChange={e => setUsername(e.target.value)}></input>
-      <input placeholder='Password' onChange={e => setPassword(e.target.value)} ></input>
+      <input ref={username} id="username" placeholder="Username"></input>
+      <input ref={password} id="password" placeholder="Password"></input>
       <div>
-          <button onClick={handleClick}>Login</button>
+          <button onClick={handleClickLogin}>Login</button>
           <Link to="/signup">
             <button>Sign Up</button>
-          </Link> 
-      </div> */}
+          </Link>
+      </div>
     </div>
   )
 }

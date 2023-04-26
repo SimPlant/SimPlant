@@ -11,11 +11,9 @@ div.setAttribute('id', 'root');
 const root = createRoot(div);
 
 root.render(
-  <BrowserRouter>
-    <GoogleOAuthProvider clientId="1041871188658-v88vuae2b2d9ijt7see44igk1tg0lptj.apps.googleusercontent.com">
-      <App />
-    </GoogleOAuthProvider>
-  </BrowserRouter>
+  <GoogleOAuthProvider clientId="1041871188658-v88vuae2b2d9ijt7see44igk1tg0lptj.apps.googleusercontent.com">
+    <App />
+  </GoogleOAuthProvider>
 );
 // Client ID:
 // 1041871188658-v88vuae2b2d9ijt7see44igk1tg0lptj.apps.googleusercontent.com
