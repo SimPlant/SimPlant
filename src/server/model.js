@@ -17,6 +17,7 @@ mongoose
 const Schema = mongoose.Schema;
 
 const plantSchema = new Schema({
+  species: { type: String, required: true, unique: true },
   lighting: { type: Number, required: true, unique: true },
   temperature: { type: Number, required: true, unique: true },
   humidity: { type: Number, required: true, unique: true },
@@ -31,7 +32,11 @@ const plantSchema = new Schema({
 // const Plant = mongoose.model('plant', plantSchema);
 
 const roomSchema = new Schema({
-  room_name: [plantSchema],
+  room_name: { type: String, required: true, unique: true },
+  lighting: { type: Number, required: true, unique: true },
+  temperature: { type: Number, required: true, unique: true },
+  humidity: { type: Number, required: true, unique: true },
+  plants: [plantSchema],
 });
 
 // const Room = mongoose.model('room', roomSchema)
@@ -44,4 +49,4 @@ const userSchema = new Schema({
 
 const User = mongoose.model('user', userSchema);
 // set a schema
-module.exports = User;
+module.exports = { User };

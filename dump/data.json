@@ -1,0 +1,29 @@
+[
+  {
+    "username": "test",
+    "password": "test123",
+    "room": [
+      {
+        "room_name": "living room",
+        "lighting": 1,
+        "temperature": 1,
+        "humidity": 0,
+        "plants": [
+          {
+            "species": "rose",
+            "lighting": 2,
+            "temperature": 2,
+            "humidity": 1,
+            "monday": true,
+            "tuesday": false,
+            "wednesay": false,
+            "thursday": true,
+            "friday": false,
+            "saturday": false,
+            "sunday": true
+          }
+        ]
+      }
+    ]
+  }
+]
