@@ -2,7 +2,12 @@ const path = require('path');
 const express = require('express');
 const app = express();
 const apiController = require('./apiController');
+const plantController = require('./plantController');
+const apiRouter = require('./routes/apiRouter');
 const PORT = 3000;
+
+
+app.use(express.json());
 
 //start server-serve index.html
 app.get('/', (req, res) => {
@@ -10,7 +15,10 @@ app.get('/', (req, res) => {
 });
 
 // route for API handling
-app.use('/api', apiController);
+app.use('/api', apiRouter);
+
+//post plant to our plants database
+// app.post('/plants', plantController.addPlant)
 
 //local error handler
 app.use((req, res) => {
