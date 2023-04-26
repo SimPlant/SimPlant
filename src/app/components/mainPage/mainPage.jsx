@@ -18,9 +18,21 @@ import LowerContainer from '../lowerContainer/lowerContainer.jsx';
 function MainPage() {
   function getAllRooms() {
     return new Promise((resolve) => {
-      resolve([]);
+      //      resolve([]);
+      resolve([
+        { _id: 1, name: 'Living Room' },
+        { _id: 2, name: 'Kitchen' },
+      ]);
+    });
+  }
 
-      // resolve([{ name: 'Living Room' }, { name: 'Kitchen' }]);
+  function getAllPlants() {
+    return new Promise((resolve) => {
+      //      resolve([]);
+      resolve([
+        { room_id: 1, species: "Big Ol' Cactus" },
+        { room_id: 2, species: "Just a li'l guy" },
+      ]);
     });
   }
 
@@ -28,20 +40,44 @@ function MainPage() {
   const userID = 1;
   // will need to make async
   const [rooms, setRooms] = useState([null]);
-  const [currentRoom, setCurrentRoom] = useState(rooms[0]);
-  // const [plants, setPlants] = useState(getAllPlants(userID).then((r) => r));
+  const [currentRoom, setCurrentRoom] = useState();
+  const [plants, setPlants] = useState([null]);
   // only show plants in current room
-  // const [currentPlants, setCurrentPlants] = useState(
-  //   plants.filter((plant) => plant.room_id === currentRoom._id)
-  // );
+  const [currentPlants, setCurrentPlants] = useState();
 
   // useEffect
   useEffect(() => {
-    async function unwrapRooms() {
+    async function initialize() {
       setRooms(await getAllRooms(userID));
     }
-    unwrapRooms();
+    initialize();
   }, []);
+
+  // any time rooms changes, this useEffect runs
+  useEffect(() => {
+    async function initialize() {
+      setCurrentRoom(rooms[0]);
+    }
+    initialize();
+  }, [rooms]);
+
+  // useEffect for plants
+  useEffect(() => {
+    async function initialize() {
+      setPlants(await getAllPlants(userID));
+    }
+    initialize();
+  }, []);
+
+  // set current plants, dependent on plants
+  useEffect(() => {
+    async function initialize() {
+      setCurrentPlants(
+        plants.filter((plant) => plant?.room_id === currentRoom?._id)
+      );
+    }
+    initialize();
+  }, [plants, currentRoom]);
 
   return (
     <div className="page">
