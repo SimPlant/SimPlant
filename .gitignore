@@ -1,2 +1,27 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# dependencies
+/node_modules
+dist
+dist-ssr
+*.local
+
+# production
+/config
+/client/node_modules
 .env
-node_modules
+.prettierrc
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

@@ -1,4 +1,4 @@
-const model = require('./model.js');
+const model = require('../model.js');
 const ObjectId = require('mongodb').ObjectId;
 
 const userController = {};
@@ -64,17 +64,9 @@ userController.verifyUser = (req, res, next) => {
 
 // get all data about a user
 userController.getData = (req, res, next) => {
-  const { username } = req.params;
-
-  // const o_id = neObjectId(`${id}`);
-  // console.log(o_id);
-  User.findOne({ username, password })
-    // model.User.findOne({ username: name })
+  const name = req.params.name;
+  model.User.findOne({ username: name })
     .exec()
-    .then(response => {
-      console.log('response:', response);
-      return response.json();
-    })
     .then(data => {
       console.log('entering here');
       res.locals.userData = data;

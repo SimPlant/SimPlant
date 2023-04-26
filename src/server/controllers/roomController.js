@@ -1,6 +1,6 @@
-const roomController = {};
-const models = require('./model.js');
+const models = require('../model.js');
 
+const roomController = {};
 roomController.addRoom = (req, res, next) => {
   // get the info from the query
   const user_id = req.query.id;
