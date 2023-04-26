@@ -45,7 +45,7 @@ userController.getState = async (req, res, next) => {
     FROM public.user AS a
     LEFT JOIN public.room AS b ON a._id = b.user_id
     LEFT JOIN public.plants AS c ON b._id = c.room_id
-    WHERE a._id = 1
+    WHERE a._id = $1
     GROUP BY a._id;
     `;
     const result = await pool.query(query, [id]);

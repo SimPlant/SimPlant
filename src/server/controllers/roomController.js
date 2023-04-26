@@ -16,7 +16,7 @@ const roomController = {};
 roomController.getRoom = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const query = `SELECT * FROM public.room
+    const query = `SELECT * FROM public.rooms
                     WHERE _id = $1;`;
     const result = await pool.query(query, [id]);
     res.locals.room = result.rows[0];
@@ -31,7 +31,7 @@ roomController.getRoom = async (req, res, next) => {
 roomController.getAllRooms = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const query = `SELECT * FROM public.room
+    const query = `SELECT * FROM public.rooms
                     WHERE user_id = $1;`;
     const result = await pool.query(query, [id]);
     res.locals.rooms = result.rows;
@@ -51,7 +51,7 @@ roomController.addRoom = async (req, res, next) => {
   try {
     const { name, light, humidity, temperature, user_id } = req.body;
     const values = [name, light, humidity, temperature, user_id];
-    const query = `INSERT INTO public.room (name, light, humidity, temperature, user_id)
+    const query = `INSERT INTO public.rooms (name, light, humidity, temperature, user_id)
                     VALUES ($1, $2, $3, $4, $5)
                     RETURNING *;`;
     const result = await pool.query(query, values);
