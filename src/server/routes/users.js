@@ -16,7 +16,7 @@ router.post('/createUser', userController.createUser, (req, res) => {
 
 //add room
 router.post('/room/', roomController.addRoom, (req, res) => {
-  res.status(200).send('room added');
+  res.status(200).send('New room added!');
 });
 
 // add plant

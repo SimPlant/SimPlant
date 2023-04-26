@@ -1,4 +1,3 @@
-// const path = require('path');
 const model = require('../model.js');
 
 // const ObjectId = require('mongodb').ObjectId;
@@ -35,11 +34,13 @@ plantController.addPlant = async (req, res, next) => {
     friday === undefined ||
     saturday === undefined ||
     sunday === undefined
-  )
+  ) {
     return next({
       log: 'plantController.addPlant',
       message: { err: 'Missing input field' },
     });
+  }
+
   // check if username exists
   // check if room_name exists
   // check if this plant already exists in this room
