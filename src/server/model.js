@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-
+require('dotenv').config();
 mongoose
-  .connect(MONGO_URI, {
+  .connect(process.env.MONGO_URI, {
     // options for the connect method to parse the URI
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -40,7 +40,7 @@ const roomSchema = new Schema({
 
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
-  password: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
   room: [roomSchema],
 });
 

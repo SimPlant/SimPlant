@@ -11,7 +11,7 @@ router.get('/:name', userController.getData, (req, res) => {
 });
 
 router.post('/createUser', userController.createUser, (req, res) => {
-  res.status(201).send(`New user ${res.locals.userId}created!`);
+  return res.status(201).send(`New user created!`);
 });
 //add room
 // router.patch('/room/', roomController.addRoom, (req, res) => {
@@ -19,7 +19,7 @@ router.post('/createUser', userController.createUser, (req, res) => {
 // });
 
 // add plant
-app.patch('/plant', plantController.addPlant, (req, res) => {
+router.patch('/plant', plantController.addPlant, (req, res) => {
   res.status(200).send();
 });
 

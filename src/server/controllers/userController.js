@@ -5,7 +5,7 @@ const userController = {};
 //authentication/creating user
 userController.createUser = (req, res, next) => {
   const { username, password } = req.body;
-  console.log('user', req.body);
+  // console.log('user', req.body);
   if (!username || !password) {
     return next({
       log: 'userController.createUser',
@@ -17,6 +17,7 @@ userController.createUser = (req, res, next) => {
     .exec()
     .then(user => {
       if (user.length) {
+        console.log('user info received from db: ', user);
         return next({
           log: 'userController.createUser',
           message: {
@@ -35,7 +36,7 @@ userController.createUser = (req, res, next) => {
     .catch(err =>
       next({
         log: `userController.createUser: ${err}`,
-        message: { err: 'Error creating user' },
+        message: { err: `Error creating user:${err}` },
       })
     );
 };
@@ -68,7 +69,7 @@ userController.getData = (req, res, next) => {
   model.User.findOne({ username: name })
     .exec()
     .then(data => {
-      console.log('entering here');
+      // console.log('entering here');
       res.locals.userData = data;
       return next();
     })
