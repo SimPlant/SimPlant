@@ -1,4 +1,7 @@
 const pool = require('../database.js');
+const dotenv = require('dotenv');
+
+//this method adds dotenv variables to our process
 
 const plantController = {};
 
@@ -27,13 +30,19 @@ plantController.addPlant = async (req,res,next) => {
 }
 
 plantController.findInformation = async(req, res, next) => {
+  dotenv.config();
+  const PERENUAL_KEY = process.env.PERENUAL_KEY;
   const { species, watering_frequency_per_week, humidity, light, user_id, room_id } = req.body
-  
+  try {
+    const result = await fetch(`https://perenual.com/api/species-list?key=${PERENUAL_KEY}&q=${species}`)
+    console.log(result);
+  } catch (err){
+    console.log('perenual error')
+  }
   //fetch from api // const plant = await fetch(url)
   // let { watering_frequency_per_week, humidity, light } = plant;
   // const {species, user_id, room_id} = req.body;
  
-
   //store everything in res.locals.plant
   res.locals.plant = { species, watering_frequency_per_week, humidity, light, user_id, room_id };
   return next();

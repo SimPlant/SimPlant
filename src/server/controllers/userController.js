@@ -35,6 +35,28 @@ userController.getAllUsers = async (req,res,next) => {
   }
 }
 
+userController.getState = async (req, res, next) => {
+  try {
+    const { id } = req.params
+    const query = `SELECT a.*, json_build_object(
+      'rooms', ARRAY_REMOVE(array_agg(DISTINCT b.*), NULL), 
+      'plants', ARRAY_REMOVE(array_agg(DISTINCT c.*), NULL)
+    ) AS state
+    FROM public.user AS a
+    LEFT JOIN public.room AS b ON a._id = b.user_id
+    LEFT JOIN public.plants AS c ON b._id = c.room_id
+    WHERE a._id = 1
+    GROUP BY a._id;
+    `;
+    const result = await pool.query(query, [id]);
+    res.locals.data = result.rows[0];
+    console.log(res.locals.data);
+    return next();
+  } catch (error) {
+    return next(errorCreator('getUser', error));
+  }
+}
+
 userController.addUser = async (req,res,next) => {
   try {
     const { username, password } = req.body;
