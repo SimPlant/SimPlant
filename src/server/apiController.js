@@ -32,8 +32,10 @@ const apiController = {
         const result = await pool.query(query);
         //if our query to our database finds the desired plant
         if(result.rows.length > 0) {
+          console.log('isduplicate')
           res.locals.duplicateFound = true;
           res.locals.plantDetails = result.rows; //pass it within res.locals
+          console.log('duplicate found. \n returning res.locals.platDetails: ', res.locals.plantDetails);
           return next();
         } else {
           console.log("move to next middleware bc new family");
@@ -46,10 +48,11 @@ const apiController = {
         return next({'getPlant': error});
       }
     },
-
     //fetches the plant family from plant api
     getPlantFamily: (req, res, next) => {
+      console.log('getPlantFamily invoked');
       if(res.locals.duplicateFound === true) {
+        console.log('getPlantFamily skipped due to duplicate DB value');
         return next();
       }
         const { family } = req.params;
@@ -65,6 +68,7 @@ const apiController = {
               // console.log('data', data)
               data.results.forEach((obj => plantIdArr.push(obj.pid)));
               res.locals.plantId = plantIdArr;
+              console.log('getPlantFamily complete. returning res.locals.plantId: ', res.locals.plantId);
               return next();
             })
           .catch((err) => {
@@ -75,7 +79,9 @@ const apiController = {
 
       //middleware that takes plantID and gets backs all details
       getPlantDetails: async (req, res, next) => {
+        console.log('getPlantDetails invoked');
         if(res.locals.duplicateFound === true) {
+          console.log('getPlantDetails skipped due to duplicate DB entry');
           return next();
         }
         const plantInfo = [];
@@ -92,7 +98,7 @@ const apiController = {
               plantInfo.push(result)
             })
         }
-
+        console.log('getPlantDetails complete. returning res.locals.plantDetails: ', res.locals.plantDetails);
         res.locals.plantDetails = plantInfo;
         return next()
       },

@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import './formContainerStyle.scss';
 
-export default function FormContainer() {
+
+export default function FormContainer(props) {
+  const { queryPlantFamily, updateSearchPlant } = props;
+  const typedPlantFamily = useRef(null);
+  // console.log(`queryPlantFamily(was the prop drilled?): ${queryPlantFamily}`)
   return (
     <div className="formContainer">
-      <form className="roomForm">
+      {/* <form className="roomForm">
         <div className="formTitle">ADD ROOM</div>
         <input
           className="inputField"
@@ -30,31 +34,26 @@ export default function FormContainer() {
           <option value="Low Humidity">Low</option>
         </select>
         <button type="submit">Submit</button>
-      </form>
-      <form className="plantForm">
+      </form> */}
+      {/* <form className="plantForm" onSubmit={()=> console.log(); queryPlantFamily("cactus")}></div> */}
+      {/* <form className="plantForm" > */}
         <div className="formTitle">ADD PLANT</div>
         <input
-          name="plantSpecies"
+          // name="plantSpecies"
           type="text"
-          placeholder="Plant Species"
+          placeholder="Plant Family"
+          // ref={typedPlantFamily}
+          // required onChange={ (e) => {updateSearchPlant(e.target.value)} }
         ></input>
-        <input
-          name="plantLighting"
-          type="text"
-          placeholder="Lighting Needs"
-        ></input>
-        <input
-          name="plantWatering"
-          type="text"
-          placeholder="Watering Needs"
-        ></input>
-        <input
-          name="plantHumidity"
-          type="text"
-          placeholder="Humidity Needs"
-        ></input>
-        <button type="submit">Submit</button>
-      </form>
+        <button 
+        // onClick={(event) => {
+        //   event.preventDefault();
+        //   console.log('clicked!')}
+        // }
+        onClick={()=> queryPlantFamily("cactus")} 
+        // required onClick={(e)=> updateSearchPlant(e.target.value)}
+        type="submit">Submit</button>
+      {/* </form> */}
     </div>
   );
 }

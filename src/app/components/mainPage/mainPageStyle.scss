@@ -1,7 +1,19 @@
 @import '../../_variables.scss';
 
 .page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   height: 100%;
   width: 100%;
   background-color: $lightPrimary;
+}
+
+
+.selectedPlants {
+  height: 20vh;
+  width: 90vw;
+  border: 2px solid green;
+  border-radius: 10px;
+  background-color: lightcyan;
 }
