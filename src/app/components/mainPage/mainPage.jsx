@@ -52,7 +52,6 @@ function MainPage() {
     console.log({...roomObj, user_id:user});
     const data = await api.addRoom({...roomObj, user_id: user})
     const newRoom = await data.json();
-    console.log('after invocation', newRoom);
     setRooms(prevRooms => [newRoom, ...prevRooms]);
   }
 
