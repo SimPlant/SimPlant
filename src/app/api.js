@@ -1,10 +1,4 @@
-import { request } from "../server/server";
-
-
 const apiWrapper = {};
-
-
-//define some functions
 
 //add a user
 apiWrapper.addUser = async (body) => {
@@ -72,7 +66,6 @@ apiWrapper.deletePlant = async (plantID) => {
     console.log('plant delete request err')
   }
 }
-
 
 //addRoom
 apiWrapper.addRoom = async (body) => {
