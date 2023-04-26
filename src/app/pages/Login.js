@@ -22,7 +22,7 @@ export default function Login(props) {
     // return data;
   }
   
-  const handleClickLogin = async () => {
+  const handleClick = async () => {
     const result = await userLogin({
         username,
         password
@@ -49,7 +49,7 @@ export default function Login(props) {
       <input ref={username} id="username" placeholder="Username"></input>
       <input ref={password} id="password" placeholder="Password"></input>
       <div>
-          <button onClick={handleClickLogin}>Login</button>
+          <button onClick={handleClick}>Login</button>
           <Link to="/signup">
             <button>Sign Up</button>
           </Link>
