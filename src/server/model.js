@@ -14,25 +14,25 @@ mongoose
 const Schema = mongoose.Schema;
 
 const plantSchema = new Schema({
-  species: { type: String, required: true, unique: true },
-  lighting: { type: Number, required: true, unique: true },
-  temperature: { type: Number, required: true, unique: true },
-  humidity: { type: Number, required: true, unique: true },
-  monday: { type: Boolean, required: true, unique: true },
-  tuesday: { type: Boolean, required: true, unique: true },
-  wednesday: { type: Boolean, required: true, unique: true },
-  thursday: { type: Boolean, required: true, unique: true },
-  friday: { type: Boolean, required: true, unique: true },
-  saturday: { type: Boolean, required: true, unique: true },
-  sunday: { type: Boolean, required: true, unique: true },
+  species: { type: String },
+  lighting: { type: Number },
+  temperature: { type: Number },
+  humidity: { type: Number },
+  monday: { type: Boolean },
+  tuesday: { type: Boolean },
+  wednesday: { type: Boolean },
+  thursday: { type: Boolean },
+  friday: { type: Boolean },
+  saturday: { type: Boolean },
+  sunday: { type: Boolean },
 });
 // const Plant = mongoose.model('plant', plantSchema);
 
 const roomSchema = new Schema({
-  room_name: { type: String, required: true, unique: true },
-  lighting: { type: Number, required: true, unique: true },
-  temperature: { type: Number, required: true, unique: true },
-  humidity: { type: Number, required: true, unique: true },
+  room_name: { type: String },
+  lighting: { type: Number },
+  temperature: { type: Number },
+  humidity: { type: Number },
   plants: [plantSchema],
 });
 

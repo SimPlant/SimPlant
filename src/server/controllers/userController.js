@@ -13,7 +13,7 @@ userController.createUser = (req, res, next) => {
     });
   }
   // check if username is unique
-  User.find({ username })
+  model.User.find({ username })
     .exec()
     .then(user => {
       if (user.length) {
@@ -25,7 +25,7 @@ userController.createUser = (req, res, next) => {
         });
       }
       // if username is unique, add new user to db
-      User.create({ username, password }).then(result => {
+      model.User.create({ username, password }).then(result => {
         // store userId in response sent back
         // res.locals.account = result; => result is the created user object/doc as json
         res.locals.userId = result._id;
