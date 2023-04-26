@@ -2,11 +2,21 @@ import React from 'react';
 import './formContainerStyle.scss';
 
 export default function FormContainer(props) {
-  function onRoomSubmit (e){
+  function onRoomSubmit (e) {
     //props.addRoom();
     e.preventDefault();
-    const form = new FormData(e.target)
-    props.addRoom(Object.fromEntries(form.entries()));
+    let form = new FormData(e.target)
+    form = Object.fromEntries(form.entries());
+    //form looks like {name:'roomname', light:'3'...} '3' is a string
+    //convert to {name:'roomname',light:3...} 3 is a number
+    //use isNaN(arg);-> true or false
+    for (const property in form) {
+      if (!isNaN(Number(form[property]))) {
+        form[property] = Number(form[property])
+      }
+    }
+    props.addRoom(form);
+    // console.log(Object.fromEntries(form.entries()));
   }
 
 const onPlantSubmit = (e) => {
@@ -24,25 +34,25 @@ const onPlantSubmit = (e) => {
           name="name"
           className="inputField"
           type="text"
-          placeholder="Room Name"
+          placeholder="Room Name" 
         ></input>
-        <select name="lighting">
-          <option>Please Choose a Lighting Level</option>
-          <option value="High Light">High</option>
-          <option value="Medium Light">Medium</option>
-          <option value="Low Light">Low</option>
+        <select name="light">
+          <option value={0}>Please Choose a Lighting Level</option>
+          <option value={3}>High</option>
+          <option value={2}>Medium</option>
+          <option value={1}>Low</option>
         </select>
         <select name="temperature">
-          <option>Please Choose a Temperature Level</option>
-          <option value="High Temp">High</option>
-          <option value="Medium Temp">Medium</option>
-          <option value="Low Temp">Low</option>
+          <option value={0}>Please Choose a Temperature Level</option>
+          <option value={3}>High</option>
+          <option value={2}>Medium</option>
+          <option value={1}>Low</option>
         </select>
         <select name="humidity">
-          <option>Please Choose a Humidity Level</option>
-          <option value="High Humidity">High</option>
-          <option value="Medium Humidity">Medium</option>
-          <option value="Low Humidity">Low</option>
+          <option value={0}>Please Choose a Humidity Level</option>
+          <option value={3}>High</option>
+          <option value={2}>Medium</option>
+          <option value={1}>Low</option>
         </select>
         <button type="submit">Submit</button>
       </form>

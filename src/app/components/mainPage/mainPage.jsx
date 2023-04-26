@@ -44,13 +44,16 @@ function MainPage() {
   */
 
   //come back to figure out what happens when you have rooms with the same name
-  function changeCurrentRoom(roomName){
-    setCurrentRoom(rooms.find(room => room.name === roomName));
+  function changeCurrentRoom(roomID){
+    setCurrentRoom(rooms.find(room => room._id === roomID));
   }
   //come back to it once backend is fleshed out ************
-  async function addRoom(roomObj){
-    const newRoom = await api.addRoom(roomObj,)
-    setRooms(prevRooms => [roomObj,...prevRooms]);
+  async function addRoom(roomObj) {
+    console.log({...roomObj, user_id:user});
+    const data = await api.addRoom({...roomObj, user_id: user})
+    const newRoom = await data.json();
+    console.log('after invocation', newRoom);
+    setRooms(prevRooms => [newRoom, ...prevRooms]);
   }
 
   async function addPlant(plant){

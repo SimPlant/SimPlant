@@ -7,7 +7,7 @@ export default function RoomMenu(props) {
   if(props.rooms){
     roomOptions = props.rooms.map((room) => {
       return (
-        <option value={room?.name} key={room?._id}>
+        <option value={room?._id} key={room?._id}>
           {room?.name}
         </option>
       );
@@ -21,7 +21,7 @@ export default function RoomMenu(props) {
 
   return (
     <nav id="roomMenu">
-      <select name="rooms" onChange={(e)=>{props.changeCurrentRoom(e.target.value)}}>{roomOptions}</select>
+      <select name="rooms" onChange={(e)=>{props.changeCurrentRoom(e.target.id)}}>{roomOptions}</select>
     </nav>
   );
 }
