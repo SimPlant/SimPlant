@@ -25,7 +25,6 @@ apiWrapper.getUserState = async (user_id) => {
   // return object has {username: string, state: {rooms: [roomObj], plants: [plantObj]}  }
   // roomObj example {"_id": 1,  "name": "Living Room",  "light": 5,  "humidity": 10,  "temperature": 10,  "user_id": 1}
   // plantObj example {"_id": 1, "species": "Aloe Vera", "watering_frequency_per_week": 1, "humidity": 10, "light": 10, "user_id": 1, "room_id": 1}
-  // arrays may have null values
   try {
     return await fetch(`/api/user/${user_id}/state`)
   } catch (err){
