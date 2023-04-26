@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './mainPageStyle.scss';
 import RoomMenu from '../roomMenu/roomMenu.jsx';
 import LowerContainer from '../lowerContainer/lowerContainer.jsx';
+import api from '../../api';
 // ADD import getAllPlants and getAllRooms from API !!!!!!!!!!!!!!!!!!!
 
 //main container page acts as parent component - stateful component
@@ -21,7 +22,9 @@ function MainPage() {
   const [plants, setPlants] = useState([null]);
   // only show plants in current room
   const [currentPlants, setCurrentPlants] = useState([]);
+  const [user,setUser] = useState(null);
   
+  /*
   function getAccountData() {
     return new Promise((resolve) => {
       //      resolve([]);
@@ -38,17 +41,19 @@ function MainPage() {
       });
     });
   }
+  */
 
-
+  //come back to figure out what happens when you have rooms with the same name
   function changeCurrentRoom(roomName){
     setCurrentRoom(rooms.find(room => room.name === roomName));
   }
-
-  function addRoom(roomObj){
+  //come back to it once backend is fleshed out ************
+  async function addRoom(roomObj){
+    const newRoom = await api.addRoom(roomObj,)
     setRooms(prevRooms => [roomObj,...prevRooms]);
   }
 
-  function addPlant(plant){
+  async function addPlant(plant){
     
   }
   
@@ -56,19 +61,20 @@ function MainPage() {
   const userID = 1;
   // will need to make async
   
-
   // useEffect for Rooms and Plants
   useEffect(() => {
-    async function initialize() {
-      const accountData = await getAccountData(userID);
-      setRooms(accountData.rooms);
-      setPlants(accountData.plants);
+    async function initialize() { 
+      const accountData = await api.getUserState(userID);
+      const data = await accountData.json();
+      setUser(data._id);
+      setRooms(data.state.rooms);
+      setPlants(data.state.plants);
     }
     initialize();
   }, []);
-
   // any time rooms changes, this useEffect runs
   useEffect(() => {
+
     async function initialize() {
       setCurrentRoom(rooms[0]);
     }
