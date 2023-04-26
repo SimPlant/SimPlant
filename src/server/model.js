@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
-
-const MONGO_URI =
-  'mongodb+srv://carolynzrx:123@cluster0.edqa7gu.mongodb.net/?retryWrites=true&w=majority';
-
+require('dotenv').config();
 mongoose
-  .connect(MONGO_URI, {
+  .connect(process.env.MONGO_URI, {
     // options for the connect method to parse the URI
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -17,25 +14,25 @@ mongoose
 const Schema = mongoose.Schema;
 
 const plantSchema = new Schema({
-  species: { type: String, required: true, unique: true },
-  lighting: { type: Number, required: true, unique: true },
-  temperature: { type: Number, required: true, unique: true },
-  humidity: { type: Number, required: true, unique: true },
-  monday: { type: Boolean, required: true, unique: true },
-  tuesday: { type: Boolean, required: true, unique: true },
-  wednesday: { type: Boolean, required: true, unique: true },
-  thursday: { type: Boolean, required: true, unique: true },
-  friday: { type: Boolean, required: true, unique: true },
-  saturday: { type: Boolean, required: true, unique: true },
-  sunday: { type: Boolean, required: true, unique: true },
+  species: { type: String },
+  lighting: { type: Number },
+  temperature: { type: Number },
+  humidity: { type: Number },
+  monday: { type: Boolean },
+  tuesday: { type: Boolean },
+  wednesday: { type: Boolean },
+  thursday: { type: Boolean },
+  friday: { type: Boolean },
+  saturday: { type: Boolean },
+  sunday: { type: Boolean },
 });
 // const Plant = mongoose.model('plant', plantSchema);
 
 const roomSchema = new Schema({
-  room_name: { type: String, required: true, unique: true },
-  lighting: { type: Number, required: true, unique: true },
-  temperature: { type: Number, required: true, unique: true },
-  humidity: { type: Number, required: true, unique: true },
+  room_name: { type: String },
+  lighting: { type: Number },
+  temperature: { type: Number },
+  humidity: { type: Number },
   plants: [plantSchema],
 });
 
@@ -43,7 +40,7 @@ const roomSchema = new Schema({
 
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
-  password: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
   room: [roomSchema],
 });
 
