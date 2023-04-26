@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const apiController = require('./apiController');
 const plantController = require('./plantController');
-const apiRouter = require('./routes/apiRouter');
+const apiRoutes = require('./routes/apiRoutes');
 const PORT = 3000;
 
 
@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 });
 
 // route for API handling
-app.use('/api', apiRouter);
+app.use('/api', apiRoutes);
 
 //post plant to our plants database
 // app.post('/plants', plantController.addPlant)

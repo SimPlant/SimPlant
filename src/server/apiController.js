@@ -13,7 +13,7 @@ const clientSecret = process.env.CLIENT_SECRET;
 
 const apiController = {
     //fetches the plant family from plant api
-    getPlantFamily: async (req, res, next) => {
+    getPlantFamily: (req, res, next) => {
         const { family } = req.params;
         // console.log('req.params: ', req.params);
         const plantIdArr = [];
@@ -24,6 +24,7 @@ const apiController = {
         })
           .then((body)=> body.json())
           .then((data) => {
+              // console.log('data', data)
               data.results.forEach((obj => plantIdArr.push(obj.pid)));
               res.locals.plantId = plantIdArr;
               return next();
@@ -33,37 +34,70 @@ const apiController = {
             return next({message});
           })
       },
+
       //middleware that takes plantID and gets backs all details
       getPlantDetails: async (req, res, next) => {
         const plantInfo = [];
     
         const plantId = res.locals.plantId;
-        console.log('received array from getPlantFamily: ', plantId);
-        // const promises = plantId.map( async (plantName) => {
-        plantId.map( async (plantName) => {
-        try { 
-            const data = await fetch(`https://open.plantbook.io/api/v1/plant/detail/${plantName}/`, {
+
+        // await plantId.forEach( async (plantName) => {
+        //    try {
+        //       const data = await fetch(`https://open.plantbook.io/api/v1/plant/detail/${plantName}/`, {
+        //         method: 'GET',
+        //         headers: { 'Authorization': `Bearer ${TOKEN}` }
+        //       })
+        //       const result = data.json()
+        //       plantInfo.push(result)
+        //    }
+        //    catch {
+        //       return next({
+        //         log: 'getPlantDetails',
+        //         message: { err: 'Error getting plan details' }
+        //       })
+        //    } 
+        // })
+
+        for (let plantName of plantId) {
+          await fetch(`https://open.plantbook.io/api/v1/plant/detail/${plantName}/`, {
                 method: 'GET',
                 headers: { 'Authorization': `Bearer ${TOKEN}` }
-              })
-            const newData = await data.json()
-            plantInfo.push(newData);
-            console.log("inside: ", plantInfo)
-            }
-        catch {
-            const message = 'error encountered in apiController.getPlantDetails: ' + err;
-            return next(message);
-          }
-        try {
-            console.log('plantId from second try block: ', plantInfo);
-            res.locals.plantDetails = plantInfo;
-            return next();
+          })
+            .then(data => data.json())
+            .then(result => {
+              plantInfo.push(result)
+            })
         }
-        catch {
-          const message = 'error encountered in apiController.getPlantDetails: ' + err;
-          return next(message);
-        }
-      });
+
+        res.locals.plantDetails = plantInfo
+        return next()
+
+        // console.log('received array from getPlantFamily: ', plantId);
+        // const promises = plantId.map( async (plantName) => {
+        // plantId.map( async (plantName) => {
+        // try { 
+        //     const data = await fetch(`https://open.plantbook.io/api/v1/plant/detail/${plantName}/`, {
+        //         method: 'GET',
+        //         headers: { 'Authorization': `Bearer ${TOKEN}` }
+        //       })
+        //     const newData = await data.json()
+        //     plantInfo.push(newData);
+        //     console.log("inside: ", plantInfo)
+        //     }
+        // catch {
+        //     const message = 'error encountered in apiController.getPlantDetails: ' + err;
+        //     return next(message);
+        //   }
+        // try {
+        //     console.log('plantId from second try block: ', plantInfo);
+        //     res.locals.plantDetails = plantInfo;
+        //     return next();
+        // }
+        // catch {
+        //   const message = 'error encountered in apiController.getPlantDetails: ' + err;
+        //   return next(message);
+        // }
+      // });
 
         // console.log("promises", await promises);
         // try{
