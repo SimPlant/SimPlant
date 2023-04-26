@@ -9,15 +9,16 @@ const plant = {
   light: 5,
 };
 
-export default function Room() {
-  return (
-    <div id="room">
-      <Plant plant={plant} />
-      <Plant plant={plant} />
-      <Plant plant={plant} />
-      <Plant plant={plant} />
-      <Plant plant={plant} />
-      <Plant plant={plant} />
-    </div>
-  );
+export default function Room(props) {
+  console.log(props);
+  // if (Array.isArray(props.currentPlants)) {
+  //   const plants = props.currentPlants.map((plant) => {
+  //     return <Plant plant={plant} key={plant._id} />;
+  //   });
+  // } else {
+  //   const plants = null;
+  // }
+  const plants = '';
+
+  return <div id="room">{plants}</div>;
 }

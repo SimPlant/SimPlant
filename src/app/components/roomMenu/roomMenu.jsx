@@ -5,7 +5,7 @@ export default function RoomMenu(props) {
   // add props to component
   let roomOptions = props.rooms.map((room, i) => {
     return (
-      <option value={room?.name} key={i}>
+      <option value={room?.name} key={room?._id}>
         {room?.name}
       </option>
     );

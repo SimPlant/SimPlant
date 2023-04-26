@@ -30,8 +30,8 @@ function MainPage() {
     return new Promise((resolve) => {
       //      resolve([]);
       resolve([
-        { room_id: 1, species: "Big Ol' Cactus" },
-        { room_id: 2, species: "Just a li'l guy" },
+        { _id: 1, room_id: 1, species: "Big Ol' Cactus" },
+        { _id: 2, room_id: 2, species: "Just a li'l guy" },
       ]);
     });
   }
@@ -45,10 +45,11 @@ function MainPage() {
   // only show plants in current room
   const [currentPlants, setCurrentPlants] = useState();
 
-  // useEffect
+  // useEffect for Rooms and Plants
   useEffect(() => {
     async function initialize() {
       setRooms(await getAllRooms(userID));
+      setPlants(await getAllPlants(userID));
     }
     initialize();
   }, []);
@@ -61,13 +62,7 @@ function MainPage() {
     initialize();
   }, [rooms]);
 
-  // useEffect for plants
-  useEffect(() => {
-    async function initialize() {
-      setPlants(await getAllPlants(userID));
-    }
-    initialize();
-  }, []);
+  useEffect(() => console.log(currentPlants), [currentPlants]);
 
   // set current plants, dependent on plants
   useEffect(() => {
@@ -82,7 +77,7 @@ function MainPage() {
   return (
     <div className="page">
       <RoomMenu rooms={rooms} />
-      <LowerContainer currentRoom={currentRoom} currentPlants={''} />
+      <LowerContainer currentRoom={currentRoom} currentPlants={currentPlants} />
     </div>
   );
 }
