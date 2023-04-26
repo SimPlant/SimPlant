@@ -13,14 +13,15 @@ router.get('/:name', userController.getData, (req, res) => {
 router.post('/createUser', userController.createUser, (req, res) => {
   return res.status(201).send(`New user created!`);
 });
+
 //add room
-// router.patch('/room/', roomController.addRoom, (req, res) => {
-//   res.status(200).send('room added');
-// });
+router.post('/room/', roomController.addRoom, (req, res) => {
+  res.status(200).send('room added');
+});
 
 // add plant
-router.patch('/plant', plantController.addPlant, (req, res) => {
-  res.status(200).send();
+router.post('/plant', plantController.addPlant, (req, res) => {
+  res.status(201).send('New plant added!');
 });
 
 // get all data about all users
