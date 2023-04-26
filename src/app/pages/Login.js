@@ -24,7 +24,7 @@ export default function Login(props) {
           const decoded = jwt_decode(credentialResponse.credential);
           console.log(decoded);
           props.setLoggedIn(true);
-          // fetch call to server to store decoded.sub (google user's internal id) in cookie or database to preserve session
+          // to add below: fetch call to server to store decoded.sub (google user's internal id) in cookie or database to preserve session
         }}
         onError={() => {
           console.log('Login Failed');

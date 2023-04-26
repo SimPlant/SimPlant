@@ -28,6 +28,36 @@ export default function FormContainer() {
         <FormSelect name="plantTemperature" property="Temperature"/>
         <FormSelect name="plantHumidity" property="Humidity"/>
         <FormSelect name="plantWatering" property="Watering"/>
+        <div className="schedule">
+          <div>
+            <label for="">Mon</label>
+            <input type="checkbox" name="Mon" value="Mon"></input>
+          </div>
+          <div>
+            <label for="">Tue</label>
+            <input type="checkbox" name="Tue" value="Tue"></input>
+          </div>
+          <div>
+            <label for="">Wed</label>
+            <input type="checkbox" name="Wed" value="Wed"></input>
+          </div>
+          <div>
+            <label for="">Thur</label>
+            <input type="checkbox" name="Thur" value="Thur"></input>
+          </div>
+          <div>
+            <label for="">Fri</label>
+            <input type="checkbox" name="Fri" value="Fri"></input>
+          </div>
+          <div>
+            <label for="">Sat</label>
+            <input type="checkbox" name="Sat" value="Sat"></input>
+          </div>
+          <div>
+            <label for="">Sun</label>
+            <input type="checkbox" name="Sun" value="Sun"></input>
+          </div>
+        </div>
         <button type="submit">Submit</button>
       </form>
     </div>

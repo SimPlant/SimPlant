@@ -8,11 +8,14 @@ function App() {
   const [loggedIn, setLoggedIn] = useState();
 
   // if user is not logged in, load Login component to require login
-  if (!loggedIn) {
-    return (
-      <Login setLoggedIn={setLoggedIn} />
-    )
-  }
+  // if (!loggedIn) {
+  //   return (
+  //     <>
+  //       <Header />
+  //       <Login setLoggedIn={setLoggedIn} />
+  //     </>
+  //   )
+  // }
 
   // if user is logged in, display homepage
   return (
