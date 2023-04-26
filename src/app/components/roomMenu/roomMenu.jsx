@@ -21,7 +21,7 @@ export default function RoomMenu(props) {
 
   return (
     <nav id="roomMenu">
-      <select name="rooms" onChange={(e)=>{props.changeCurrentRoom(e.target.id)}}>{roomOptions}</select>
+      <select name="rooms" onChange={(e)=>{props.changeCurrentRoom(e.target.value)}}>{roomOptions}</select>
     </nav>
   );
 }

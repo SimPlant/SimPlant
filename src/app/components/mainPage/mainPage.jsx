@@ -45,7 +45,7 @@ function MainPage() {
 
   //come back to figure out what happens when you have rooms with the same name
   function changeCurrentRoom(roomID){
-    setCurrentRoom(rooms.find(room => room._id === roomID));
+    setCurrentRoom(rooms.find(room=> room._id === Number(roomID)));
   }
   //come back to it once backend is fleshed out ************
   async function addRoom(roomObj) {
