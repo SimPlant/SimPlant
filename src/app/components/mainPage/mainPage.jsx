@@ -16,40 +16,53 @@ import LowerContainer from '../lowerContainer/lowerContainer.jsx';
 // current plants
 
 function MainPage() {
-  function getAllRooms() {
-    return new Promise((resolve) => {
-      //      resolve([]);
-      resolve([
-        { _id: 1, name: 'Living Room' },
-        { _id: 2, name: 'Kitchen' },
-      ]);
-    });
-  }
-
-  function getAllPlants() {
-    return new Promise((resolve) => {
-      //      resolve([]);
-      resolve([
-        { _id: 1, room_id: 1, species: "Big Ol' Cactus" },
-        { _id: 2, room_id: 2, species: "Just a li'l guy" },
-      ]);
-    });
-  }
-
-  // hard code userID
-  const userID = 1;
-  // will need to make async
   const [rooms, setRooms] = useState([null]);
   const [currentRoom, setCurrentRoom] = useState();
   const [plants, setPlants] = useState([null]);
   // only show plants in current room
-  const [currentPlants, setCurrentPlants] = useState();
+  const [currentPlants, setCurrentPlants] = useState([]);
+  
+  function getAccountData() {
+    return new Promise((resolve) => {
+      //      resolve([]);
+      
+      resolve({
+        rooms: [
+          { _id: 1, name: 'Living Room' },
+          { _id: 2, name: 'Kitchen' },
+        ],
+        plants: [
+          { _id: 1, room_id: 1, species: "Big Ol' Cactus" },
+          { _id: 2, room_id: 2, species: "Just a li'l guy" },
+        ]
+      });
+    });
+  }
+
+
+  function changeCurrentRoom(roomName){
+    setCurrentRoom(rooms.find(room => room.name === roomName));
+  }
+
+  function addRoom(roomObj){
+    setRooms(prevRooms => [roomObj,...prevRooms]);
+  }
+
+  function addPlant(plant){
+    
+  }
+  
+  // hard code userID
+  const userID = 1;
+  // will need to make async
+  
 
   // useEffect for Rooms and Plants
   useEffect(() => {
     async function initialize() {
-      setRooms(await getAllRooms(userID));
-      setPlants(await getAllPlants(userID));
+      const accountData = await getAccountData(userID);
+      setRooms(accountData.rooms);
+      setPlants(accountData.plants);
     }
     initialize();
   }, []);
@@ -61,8 +74,6 @@ function MainPage() {
     }
     initialize();
   }, [rooms]);
-
-  useEffect(() => console.log(currentPlants), [currentPlants]);
 
   // set current plants, dependent on plants
   useEffect(() => {
@@ -76,8 +87,8 @@ function MainPage() {
 
   return (
     <div className="page">
-      <RoomMenu rooms={rooms} />
-      <LowerContainer currentRoom={currentRoom} currentPlants={currentPlants} />
+      <RoomMenu changeCurrentRoom={changeCurrentRoom} rooms={rooms} />
+      <LowerContainer  addRoom={addRoom} currentRoom={currentRoom} currentPlants={currentPlants} />
     </div>
   );
 }

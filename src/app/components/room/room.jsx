@@ -10,15 +10,13 @@ const plant = {
 };
 
 export default function Room(props) {
-  console.log(props);
-  // if (Array.isArray(props.currentPlants)) {
-  //   const plants = props.currentPlants.map((plant) => {
-  //     return <Plant plant={plant} key={plant._id} />;
-  //   });
-  // } else {
-  //   const plants = null;
-  // }
-  const plants = '';
+  const plants = props.currentPlants.map((plant) => {
+    return <Plant plant={plant} key={plant?._id} />;
+  });
 
-  return <div id="room">{plants}</div>;
+  return (
+    <div id="room">
+      {props.currentPlants.length !== 0 && plants}
+    </div>
+    );
 }

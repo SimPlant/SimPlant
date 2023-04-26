@@ -3,7 +3,7 @@ import './roomMenuStyle.scss';
 
 export default function RoomMenu(props) {
   // add props to component
-  let roomOptions = props.rooms.map((room, i) => {
+  let roomOptions = props.rooms.map((room) => {
     return (
       <option value={room?.name} key={room?._id}>
         {room?.name}
@@ -17,7 +17,7 @@ export default function RoomMenu(props) {
 
   return (
     <nav id="roomMenu">
-      <select name="rooms">{roomOptions}</select>
+      <select name="rooms" onChange={(e)=>{props.changeCurrentRoom(e.target.value)}}>{roomOptions}</select>
     </nav>
   );
 }

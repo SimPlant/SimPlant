@@ -2,11 +2,20 @@ import React from 'react';
 import './plantStyle.scss'
 
 const Plant = (props) => {
-  const { species, 
-          watering_frequency_per_week, 
-          humidity, 
-          light 
-        } = props.plant;
+
+let species;
+let watering_frequency_per_week;
+let humidity;
+let light;
+
+if (props?.plant){
+  ({ species, 
+    watering_frequency_per_week, 
+    humidity, 
+    light 
+  } = props.plant);
+}
+
   return(
     <div className='plant'>
       <p className="species">Species: {species}</p>

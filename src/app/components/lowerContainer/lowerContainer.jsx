@@ -7,10 +7,9 @@ import Room from '../room/room.jsx';
 //render form container componenet - keeps track of current room
 
 export default function LowerContainer(props) {
-  console.log(props);
   return (
     <div className="lowerContainer">
-      <FormContainer currentRoom={props.currentRoom} />
+      <FormContainer addRoom={props.addRoom} currentRoom={props.currentRoom} />
       <Room currentPlants={props.currentPlants} />
     </div>
   );
