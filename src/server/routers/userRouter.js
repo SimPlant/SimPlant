@@ -14,6 +14,12 @@ router.get('/:id',
     res.status(200).json(res.locals.user)
   });
 
+router.get('/:id/state', 
+  userController.getState, 
+  (req, res) => {
+    res.status(200).json(res.locals.data)
+  });
+
 router.post('/', 
   userController.addUser, 
   (req, res) => {
