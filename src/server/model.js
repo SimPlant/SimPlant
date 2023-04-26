@@ -41,7 +41,7 @@ const roomSchema = new Schema({
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  room: [roomSchema],
+  rooms: [roomSchema],
 });
 
 const User = mongoose.model('user', userSchema);

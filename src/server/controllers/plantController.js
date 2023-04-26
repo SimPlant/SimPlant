@@ -49,7 +49,7 @@ plantController.addPlant = async (req, res, next) => {
     if (!user) {
       throw new Error('User not found.');
     }
-    const room = user.room.find(room => room.room_name === room_name);
+    const room = user.rooms.find(rooms => rooms.room_name === room_name);
     if (!room) {
       throw new Error('Room not found.');
     }
@@ -73,8 +73,8 @@ plantController.addPlant = async (req, res, next) => {
         sunday: sunday,
       };
       const result = await model.User.updateOne(
-        { username, 'room.room_name': room_name },
-        { $push: { 'room.$.plants': newPlant } }
+        { username, 'rooms.room_name': room_name },
+        { $push: { 'rooms.$.plants': newPlant } }
       );
       if (!result) {
         throw new Error('Error updating database for the new plant.');

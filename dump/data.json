@@ -2,7 +2,7 @@
   {
     "username": "test",
     "password": "test123",
-    "room": [
+    "rooms": [
       {
         "room_name": "living room",
         "lighting": 1,

@@ -23,7 +23,7 @@ roomController.addRoom = async (req, res, next) => {
     if (!user) {
       throw new Error('User not found.');
     }
-    const room = user.room.find(room => room.room_name === room_name);
+    const room = user.rooms.find(rooms => rooms.room_name === room_name);
     if (room) {
       throw new Error('Room exists.');
     } else {
@@ -36,7 +36,7 @@ roomController.addRoom = async (req, res, next) => {
       };
       const result = await model.User.updateOne(
         { username },
-        { $push: { room: newRoom } }
+        { $push: { rooms: newRoom } }
       );
       if (!result) {
         throw new Error('Error updating database for the new room.');
