@@ -4,8 +4,8 @@ const path = require('path');
 const plantRouter = require('./plantRouter');
 const roomRouter = require('./roomRouter');
 const userRouter = require('./userRouter');
-const dayRouter = require('./dayRouter');
-const wateringRouter = require('./wateringRouter');
+// const dayRouter = require('./dayRouter');
+// const wateringRouter = require('./wateringRouter');
 
 const express = require('express');
 const router = express.Router();
@@ -16,9 +16,9 @@ router.use('/plant', plantRouter);
 router.use('/room', roomRouter);
 //user
 router.use('/user', userRouter);
-//day
-router.use('/day', dayRouter);
-//water
-router.use('/water', wateringRouter);
+// //day
+// router.use('/day', dayRouter);
+// //water
+// router.use('/water', wateringRouter);
 
 module.exports = router;

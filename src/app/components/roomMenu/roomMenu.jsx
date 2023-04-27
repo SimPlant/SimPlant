@@ -1,27 +1,29 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import './roomMenuStyle.scss';
 
 export default function RoomMenu(props) {
   // add props to component
-  let roomOptions = [];
-  if(props.rooms){
-    roomOptions = props.rooms.map((room) => {
-      return (
-        <option value={room?._id} key={room?._id}>
-          {room?.name}
-        </option>
-      );
-    });
+  const [roomOptions, setRoomOptions] = useState([]);
 
-  }
-
-  if (!roomOptions.length) {
-    roomOptions = <option value="empty">Add a room first!</option>;
-  }
+  useEffect(() => {
+    if(props.rooms && props.rooms.length){
+      const options = props.rooms.map((room) => {
+        return (
+          <option value={room?._id} key={room?._id}>
+            {room?.name}
+          </option>
+        );
+      });
+      setRoomOptions(options);
+    } else {
+      setRoomOptions([<option key="empty" value="empty">Add a room first!</option>]);
+    }
+  }, [props.rooms]);
 
   return (
     <nav id="roomMenu">
-      <select name="rooms" onChange={(e)=>{props.changeCurrentRoom(e.target.value)}}>{roomOptions}</select>
+      <select name="rooms" value={props.currentRoom ? props.currentRoom._id : ''}
+ onChange={(e)=>{props.changeCurrentRoom(e.target.value)}}>{roomOptions}</select>
     </nav>
   );
 }

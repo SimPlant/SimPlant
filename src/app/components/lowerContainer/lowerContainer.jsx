@@ -10,7 +10,7 @@ export default function LowerContainer(props) {
   return (
     <div className="lowerContainer">
       <FormContainer addRoom={props.addRoom} currentRoom={props.currentRoom} />
-      <Room currentPlants={props.currentPlants} />
+      <Room updateRoom={props.updateRoom} currentPlants={props.currentPlants} currentRoom={props.currentRoom}/>
     </div>
   );
 }
