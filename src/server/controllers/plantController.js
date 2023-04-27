@@ -93,18 +93,19 @@ plantController.deletePlantById = async (req,res,next) => {
 plantController.updatePlantById = async (req,res,next) => {
   try {
     const{ id } = req.params;
-    const{ notes, nickname} = req.body;
+    const{ notes, nickname, species, common_name, watering_frequency, days_between_watering, full_sun, part_sun, full_shade, image, user_id, room_id} = req.body;
     const query = `UPDATE public.plants 
-                  SET notes=$2, nickname=$3
+                  SET notes=$2, nickname=$3, species=$4, common_name=$5, 
+                  watering_frequency=$6, days_between_watering=$7, full_sun=$8, 
+                  part_sun=$9, full_shade=$10, image=$11, user_id=$12, room_id=$13
                   WHERE _id = $1
                   RETURNING *;`;
-    const result = await pool.query(query, [id, notes, nickname]);
+    const result = await pool.query(query, [id, notes, nickname, species, common_name, watering_frequency, days_between_watering, full_sun, part_sun, full_shade, image, user_id, room_id]);
     res.locals.dbPlant = result.rows[0];
     return next();
   } catch (error) {
     return next(errorCreator('deletePlant', error));
   }
-
 }
 
 
