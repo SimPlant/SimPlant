@@ -13,6 +13,11 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
+app.get('/speciesList', (req, res) => {
+  console.log('species list requested!')
+  res.sendFile(path.join(__dirname, './speciesList.json'));
+});
+
 // route for API handling
 app.use('/api', apiRouter);
 

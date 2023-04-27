@@ -38,7 +38,7 @@ export default function Room(props) {
 
   const plants = props.currentPlants.map((plant,i) => {
     return (
-      <Draggable draggableId={plant?._id.toString()} key={plant?._id} index={i}>
+      <Draggable draggableId={`plant-${i}`} key={i} index={i}>
         {(provided)=>{
           return (
             <div
