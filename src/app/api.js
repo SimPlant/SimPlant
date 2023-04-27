@@ -79,6 +79,22 @@ api.addPlant = async (body) => {
   }
 }
 
+api.updatePlant = async (body) => {
+  // _id is the plant id
+  // const {_id, notes, nickname, species, common_name, watering_frequency,
+  // days_between_watering, full_sun, part_sun, full_shade, image, user_id, room_id} = req.body
+  try {
+    return await fetch(`api/plant/${body._id}`, {
+    method: "PUT",
+    headers: {
+      "Content-type": "application/json; charset=UTF-8"
+    },
+    body: JSON.stringify(body)})
+  } catch (err){
+    console.log('plant update request err')
+  }
+}
+
 //deletePlant
 api.deletePlant = async (plantID) => {
   try {

@@ -26,7 +26,7 @@ async function updateList(start, end) {
   });
 }
 
-updateList(1,200);
+//updateList(1,200);
 
 
 
