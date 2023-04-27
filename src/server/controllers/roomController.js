@@ -49,10 +49,10 @@ roomController.getAllRooms = async (req, res, next) => {
 /* (room: object, userID: number) -> room: Promise<object> */
 roomController.addRoom = async (req, res, next) => {
   try {
-    const { name, light, humidity, temperature, user_id } = req.body;
-    const values = [name, light, humidity, temperature, user_id];
-    const query = `INSERT INTO public.rooms (name, light, humidity, temperature, user_id)
-                    VALUES ($1, $2, $3, $4, $5)
+    const { name, light, user_id } = req.body;
+    const values = [name, light, user_id];
+    const query = `INSERT INTO public.rooms (name, light, user_id)
+                    VALUES ($1, $2, $3)
                     RETURNING *;`;
     const result = await pool.query(query, values);
     res.locals.room = result.rows[0];
@@ -67,7 +67,7 @@ roomController.addRoom = async (req, res, next) => {
 roomController.deleteRoom = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const query = `DELETE FROM public.room
+    const query = `DELETE FROM public.rooms
                     WHERE _id = $1
                     RETURNING *;`;
     const result = await pool.query(query, [id]);
@@ -85,11 +85,13 @@ roomController.deleteRoom = async (req, res, next) => {
 /* (updatedRoom: object, roomID: number) -> room: Promise<object> */
 roomController.updateRoom = async (req, res, next) => {
   try {
-    const { name, light, humidity, temperature, user_id } = req.body;
-    const values = [name, light, humidity, temperature, user_id, roomID];
-    const query = `UPDATE public.room
-                    SET name = $1, light = $2, humidity = $3, temperature = $4, user_id = $5
-                    WHERE _id = $6
+    const { id } = req.params;
+    const { name, light, user_id} = req.body;
+    console.log("updating room #", id)
+    const values = [name, light,  user_id, id];
+    const query = `UPDATE public.rooms
+                    SET name = $1, light = $2, user_id = $3
+                    WHERE _id = $4
                     RETURNING *;`;
     const result = await pool.query(query, values);
     res.locals.room = result.rows[0];

@@ -15,7 +15,7 @@ function errorCreator (funcName, error){
 userController.getUser = async (req,res,next) => {
   try {
     const { id } = req.params
-    const query = 'SELECT * FROM public.user WHERE _id = $1;';
+    const query = 'SELECT * FROM public.users WHERE _id = $1;';
     const result = await pool.query(query, [id]);
     res.locals.user = result.rows[0];
     return next();
@@ -26,7 +26,7 @@ userController.getUser = async (req,res,next) => {
 
 userController.getAllUsers = async (req,res,next) => {
   try {
-    const query = 'SELECT * FROM public.user;';
+    const query = 'SELECT * FROM public.users;';
     const result = await pool.query(query);
     res.locals.users =  result.rows;
     return next();
@@ -42,8 +42,8 @@ userController.getState = async (req, res, next) => {
       'rooms', ARRAY_REMOVE(array_agg(DISTINCT b.*), NULL), 
       'plants', ARRAY_REMOVE(array_agg(DISTINCT c.*), NULL)
     ) AS state
-    FROM public.user AS a
-    LEFT JOIN public.room AS b ON a._id = b.user_id
+    FROM public.users AS a
+    LEFT JOIN public.rooms AS b ON a._id = b.user_id
     LEFT JOIN public.plants AS c ON b._id = c.room_id
     WHERE a._id = $1
     GROUP BY a._id;
@@ -66,7 +66,7 @@ userController.addUser = async (req,res,next) => {
 
     //to compare a retrieved hash to a password
     //const isMatch = await bcrypt.compare(password, data.rows[0].password);
-    const query = `INSERT INTO public.user (username, password)
+    const query = `INSERT INTO public.users (username, password)
                   VALUES ($1, $2)
                   RETURNING *;`;
     const result = await pool.query(query, [username, passwordHash]);
@@ -86,16 +86,16 @@ userController.addUser = async (req,res,next) => {
 // }
 
 userController.updateUser = async (req, res, next) => {
-    const _id = req.params;
+    const {id} = req.params;
     const { username, password } = req.body;
     const salt = await bcrypt.genSalt(10);
     const passwordHash = await bcrypt.hash(password, salt);
     try {
-      const query = `UPDATE public.user
+      const query = `UPDATE public.users
                     SET username = $1, password = $2
                     WHERE _id = $3
                     RETURNING *;`
-      const result = await pool.query(query, [username, passwordHash, _id]);
+      const result = await pool.query(query, [username, passwordHash, id]);
       res.locals.user = result.rows[0]
       return next()
     } catch (error) {
@@ -106,7 +106,7 @@ userController.updateUser = async (req, res, next) => {
 userController.deleteUser = async (req,res,next) => {
   try {
     const { id } = req.params
-    const query = `DELETE FROM public.user
+    const query = `DELETE FROM public.users
                   WHERE _id = $1
                   RETURNING *;`
     const result = await pool.query(query, [id]);

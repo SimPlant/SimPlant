@@ -40,39 +40,39 @@ plantController.findInformation = async(req, res, next) => {
     // store image, watering, sunlight, 
     const {scientific_name, common_name, watering, sunlight, default_image } = parsedResult.data[0]
     const {thumbnail} = default_image;
+    let thirst = watering.toLowerCase()
+  
+    //watering: minimum = 1, average = 2, frequent = 3
+    let watering_frequency, days_between_watering;
 
+    if(thirst === 'frequent') {
+      watering_frequency = 3;
+      days_between_watering = 7;
+    }
+    else if (thirst === 'minimum') {
+      watering_frequency = 1;
+      days_between_watering = 21
+    }
+    else {
+      watering_frequency = 2;
+      days_between_watering = 14;
+    }
+    
+    let lightNeeds = sunlight.join().toLowerCase();
+    //sunlight: FullSun: true/false, PartSun/PartShade: true/false, FullShade: true/false
+    let full_sun = lightNeeds.includes('full sun');
+    let part_sun = lightNeeds.includes('part sun') || lightNeeds.includes('part shade');
+    let full_shade = lightNeeds.includes('full shade');
+    //catch all if none of these are true, default to part_sun
+    if(!(full_sun || part_sun || full_shade)) part_sun = true;
+
+    //store everything in res.locals.plant
+    res.locals.plant = { species: scientific_name[0], common_name, watering_frequency, days_between_watering, full_sun, part_sun, full_shade, image: thumbnail, user_id, room_id };
+    return next();
   } catch (err){
     console.log('perenual error')
   }
-  let thirst = watering.toLowerCase()
-  
-  //watering: minimum = 1, average = 2, frequent = 3
-  let watering_frequency, days_between_watering;
-
-  if(thirst === 'frequent') {
-    watering_frequency = 3;
-    days_between_watering = 7;
-  }
-  else if (thirst === 'minimum') {
-    watering_frequency = 1;
-    days_between_watering = 21
-  }
-  else {
-    watering_frequency = 2;
-    days_between_watering = 14;
-  }
-  
-  let lightNeeds = sunlight.join().toLowerCase();
-  //sunlight: FullSun: true/false, PartSun/PartShade: true/false, FullShade: true/false
-  let full_sun = lightNeeds.includes('full sun');
-  let part_sun = lightNeeds.includes('part sun') || lightNeeds.includes('part shade');
-  let full_shade = lightNeeds.includes('full shade');
-  //catch all if none of these are true, default to part_sun
-  if(!(full_sun || part_sun || full_shade)) part_sun = true;
-
-  //store everything in res.locals.plant
-  res.locals.plant = { species: scientific_name, common_name, watering_frequency, days_between_watering, full_sun, part_sun, full_shade, image: thumbnail, user_id, room_id };
-  return next();
+  return next('perenual error');
 }
 
 plantController.deletePlantById = async (req,res,next) => {
@@ -82,14 +82,30 @@ plantController.deletePlantById = async (req,res,next) => {
                   WHERE _id = $1
                   RETURNING *;`;
     const result = await pool.query(query, [id]);
-    res.locals.dbPlant = result;
+    res.locals.dbPlant = result.rows[0];
     return next();
   } catch (error) {
     return next(errorCreator('deletePlant', error));
   }
+
 }
 
+plantController.updatePlantById = async (req,res,next) => {
+  try {
+    const{ id } = req.params;
+    const{ notes, nickname} = req.body;
+    const query = `UPDATE public.plants 
+                  SET notes=$2, nickname=$3
+                  WHERE _id = $1
+                  RETURNING *;`;
+    const result = await pool.query(query, [id, notes, nickname]);
+    res.locals.dbPlant = result.rows[0];
+    return next();
+  } catch (error) {
+    return next(errorCreator('deletePlant', error));
+  }
 
+}
 
 
 

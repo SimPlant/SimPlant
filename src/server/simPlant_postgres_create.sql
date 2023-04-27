@@ -2,7 +2,7 @@
 -- psql -d <elephant-url> -f src/server/simPlant_postgres_create.sql
 
 
-
+psql -d postgres://xydyryqw:CinsxrYBeuGizT9krpmsCaaTtNJIk3N_@kashin.db.elephantsql.com/xydyryqw  -f src/server/simPlant_postgres_create.sql
 
 -- plants
 -- add common name to plant
@@ -25,6 +25,7 @@ CREATE TABLE public.plants (
 );
 
 -- room
+-- light is 1 all shade, 2 part sun, 3 full sun
 CREATE TABLE public.rooms (
   "_id" serial NOT NULL,
   "name" varchar NOT NULL,
@@ -43,10 +44,10 @@ CREATE TABLE public.users (
 
 
 -- plants foreign keys
-ALTER TABLE public.plants ADD CONSTRAINT "plants_fk0" FOREIGN KEY ("user_id") REFERENCES public.user("_id");
-ALTER TABLE public.plants ADD CONSTRAINT "plants_fk1" FOREIGN KEY ("room_id") REFERENCES public.room("_id");
+ALTER TABLE public.plants ADD CONSTRAINT "plants_fk0" FOREIGN KEY ("user_id") REFERENCES public.users("_id");
+ALTER TABLE public.plants ADD CONSTRAINT "plants_fk1" FOREIGN KEY ("room_id") REFERENCES public.rooms("_id") ON DELETE CASCADE;
 -- room foreign key
-ALTER TABLE public.rooms ADD CONSTRAINT "room_fk1" FOREIGN KEY ("user_id") REFERENCES public.user("_id");
+ALTER TABLE public.rooms ADD CONSTRAINT "room_fk1" FOREIGN KEY ("user_id") REFERENCES public.users("_id") ON DELETE CASCADE;
 -- room constraint
-ALTER TABLE public.rooms ADD CONSTRAINT 'room_unique' UNIQUE ("col1", "col2")
+ALTER TABLE public.rooms ADD CONSTRAINT "room_unique" UNIQUE ("_id", "user_id")
 
