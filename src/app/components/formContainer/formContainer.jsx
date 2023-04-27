@@ -42,7 +42,7 @@ const onPlantSubmit = (e) => {
           <option value={2}>Medium</option>
           <option value={1}>Low</option>
         </select>
-        <select name="temperature">
+        {/* <select name="temperature">
           <option value={0}>Please Choose a Temperature Level</option>
           <option value={3}>High</option>
           <option value={2}>Medium</option>
@@ -53,7 +53,7 @@ const onPlantSubmit = (e) => {
           <option value={3}>High</option>
           <option value={2}>Medium</option>
           <option value={1}>Low</option>
-        </select>
+        </select> */}
         <button type="submit">Submit</button>
       </form>
 

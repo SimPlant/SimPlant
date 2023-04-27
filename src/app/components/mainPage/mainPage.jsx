@@ -72,6 +72,9 @@ function MainPage() {
       return current.concat(restOfRooms);
       })
   }
+  async function reorderRoom(plantArr){
+    setCurrentPlants(plantArr)
+  }
 
   async function addPlant(plant){
     
@@ -116,7 +119,12 @@ function MainPage() {
     <div className="page">
       <button onClick ={deleteRoom}>delete current room</button>
       <RoomMenu changeCurrentRoom={changeCurrentRoom} rooms={rooms} currentRoom={currentRoom}/>
-      <LowerContainer updateRoom={updateRoom} addRoom={addRoom} currentRoom={currentRoom} currentPlants={currentPlants} />
+      <LowerContainer 
+        updateRoom={updateRoom} 
+        addRoom={addRoom} 
+        currentRoom={currentRoom} 
+        currentPlants={currentPlants} 
+        reorderRoom={reorderRoom}/>
     </div>
   );
 }
