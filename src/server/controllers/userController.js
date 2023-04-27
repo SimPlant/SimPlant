@@ -53,7 +53,7 @@ userController.getState = async (req, res, next) => {
     console.log(res.locals.data);
     return next();
   } catch (error) {
-    return next(errorCreator('getUserState', error));
+    return next(errorCreator('getState', error));
   }
 }
 
