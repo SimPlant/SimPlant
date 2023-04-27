@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './mainPageStyle.scss';
 import RoomMenu from '../roomMenu/roomMenu.jsx';
 import LowerContainer from '../lowerContainer/lowerContainer.jsx';
+import api from '../../api';
 // ADD import getAllPlants and getAllRooms from API !!!!!!!!!!!!!!!!!!!
 
 //main container page acts as parent component - stateful component
@@ -16,37 +17,87 @@ import LowerContainer from '../lowerContainer/lowerContainer.jsx';
 // current plants
 
 function MainPage() {
-  function getAllRooms() {
+  const [rooms, setRooms] = useState([null]);
+  const [currentRoom, setCurrentRoom] = useState();
+  const [plants, setPlants] = useState([null]);
+  // only show plants in current room
+  const [currentPlants, setCurrentPlants] = useState([]);
+  const [user,setUser] = useState(null);
+  
+  /*
+  function getAccountData() {
     return new Promise((resolve) => {
-      resolve([]);
-
-      // resolve([{ name: 'Living Room' }, { name: 'Kitchen' }]);
+      //      resolve([]);
+      
+      resolve({
+        rooms: [
+          { _id: 1, name: 'Living Room' },
+          { _id: 2, name: 'Kitchen' },
+        ],
+        plants: [
+          { _id: 1, room_id: 1, species: "Big Ol' Cactus" },
+          { _id: 2, room_id: 2, species: "Just a li'l guy" },
+        ]
+      });
     });
   }
+  */
 
+  //come back to figure out what happens when you have rooms with the same name
+  function changeCurrentRoom(roomID){
+    setCurrentRoom(rooms.find(room=> room._id === Number(roomID)));
+  }
+  //come back to it once backend is fleshed out ************
+  async function addRoom(roomObj) {
+    console.log({...roomObj, user_id:user});
+    const data = await api.addRoom({...roomObj, user_id: user})
+    const newRoom = await data.json();
+    console.log('after invocation', newRoom);
+    setRooms(prevRooms => [newRoom, ...prevRooms]);
+  }
+
+  async function addPlant(plant){
+    
+  }
+  
   // hard code userID
   const userID = 1;
   // will need to make async
-  const [rooms, setRooms] = useState([null]);
-  const [currentRoom, setCurrentRoom] = useState(rooms[0]);
-  // const [plants, setPlants] = useState(getAllPlants(userID).then((r) => r));
-  // only show plants in current room
-  // const [currentPlants, setCurrentPlants] = useState(
-  //   plants.filter((plant) => plant.room_id === currentRoom._id)
-  // );
-
-  // useEffect
+  
+  // useEffect for Rooms and Plants
   useEffect(() => {
-    async function unwrapRooms() {
-      setRooms(await getAllRooms(userID));
+    async function initialize() { 
+      const accountData = await api.getUserState(userID);
+      const data = await accountData.json();
+      setUser(data._id);
+      setRooms(data.state.rooms);
+      setPlants(data.state.plants);
     }
-    unwrapRooms();
+    initialize();
   }, []);
+  // any time rooms changes, this useEffect runs
+  useEffect(() => {
+
+    async function initialize() {
+      setCurrentRoom(rooms[0]);
+    }
+    initialize();
+  }, [rooms]);
+
+  // set current plants, dependent on plants
+  useEffect(() => {
+    async function initialize() {
+      setCurrentPlants(
+        plants.filter((plant) => plant?.room_id === currentRoom?._id)
+      );
+    }
+    initialize();
+  }, [plants, currentRoom]);
 
   return (
     <div className="page">
-      <RoomMenu rooms={rooms} />
-      <LowerContainer currentRoom={currentRoom} currentPlants={''} />
+      <RoomMenu changeCurrentRoom={changeCurrentRoom} rooms={rooms} />
+      <LowerContainer  addRoom={addRoom} currentRoom={currentRoom} currentPlants={currentPlants} />
     </div>
   );
 }

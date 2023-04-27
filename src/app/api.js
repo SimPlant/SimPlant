@@ -1,7 +1,9 @@
-const apiWrapper = {};
+const api = {};
+
+// pointing to routes on backend
 
 //add a user
-apiWrapper.addUser = async (body) => {
+api.addUser = async (body) => {
   // { username, password } = req.body
   try {
     return await fetch('/api/user', {
@@ -15,7 +17,7 @@ apiWrapper.addUser = async (body) => {
   }
 }
 //get state for user
-apiWrapper.getUserState = async (user_id) => {
+api.getUserState = async (user_id) => {
   // return object has {username: string, state: {rooms: [roomObj], plants: [plantObj]}  }
   // roomObj example {"_id": 1,  "name": "Living Room",  "light": 5,  "humidity": 10,  "temperature": 10,  "user_id": 1}
   // plantObj example {"_id": 1, "species": "Aloe Vera", "watering_frequency_per_week": 1, "humidity": 10, "light": 10, "user_id": 1, "room_id": 1}
@@ -27,7 +29,7 @@ apiWrapper.getUserState = async (user_id) => {
 }
 
 //updateUser
-apiWrapper.updateUser = async (body) => {
+api.updateUser = async (body) => {
   // { user_id, username, password } = body
   try {
     return await fetch(`/api/user/${body.user_id}`, {
@@ -42,7 +44,7 @@ apiWrapper.updateUser = async (body) => {
 }
 
 //addPlant
-apiWrapper.addPlant = async (body) => {
+api.addPlant = async (body) => {
   // const { species, watering_frequency_per_week, humidity, light, user_id, room_id } = req.body
   try {
     return await fetch('api/plant', {
@@ -57,7 +59,7 @@ apiWrapper.addPlant = async (body) => {
 }
 
 //deletePlant
-apiWrapper.deletePlant = async (plantID) => {
+api.deletePlant = async (plantID) => {
   try {
     return await fetch(`api/plant/${plantID}`, {
     method: "DELETE"})
@@ -68,7 +70,7 @@ apiWrapper.deletePlant = async (plantID) => {
 }
 
 //addRoom
-apiWrapper.addRoom = async (body) => {
+api.addRoom = async (body) => {
   //const { name, light, humidity, temperature, user_id } = req.body;
   try {
     return await fetch('api/room', {
@@ -83,7 +85,7 @@ apiWrapper.addRoom = async (body) => {
 }
 
 //deleteRoom
-apiWrapper.deleteRoom = async (roomID) => {
+api.deleteRoom = async (roomID) => {
   try {
     return await fetch(`api/room/${roomID}`, {
     method: "DELETE"})
@@ -94,7 +96,7 @@ apiWrapper.deleteRoom = async (roomID) => {
 }
 
 //updateRoom
-apiWrapper.updateRoom = async (body) => {
+api.updateRoom = async (body) => {
   //const { _id, name, light, humidity, temperature, user_id } = req.body;
   try {
     return await fetch(`api/room/${body._id}`, {
@@ -107,4 +109,4 @@ apiWrapper.updateRoom = async (body) => {
     console.log('room put request err')
   }
 }
-export default apiWrapper;
+export default api;
