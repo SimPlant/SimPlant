@@ -45,6 +45,10 @@
   box-shadow: 0 2px 8px 1px $shadow;
 }
 
+.roomForm, .plantForm {
+  background-color: $lightPrimary;
+}
+
 select {
   width: 100%;
   margin-bottom: 1rem;
