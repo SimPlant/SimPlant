@@ -12,16 +12,12 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
 export default function Room(props) {
   const [isDropdown, setIsDropdown] = useState([]);
-  useEffect(()=>{
-    console.log('isDropdown', isDropdown);
-  },[isDropdown])
 
   useEffect(() => {
     setIsDropdown(props.currentPlants.map(p => false));
   }, [props.currentPlants]);
 
   function handleOpenDropdown(e, i) {
-    console.log('click');
     const target = document.querySelector(`#plant-${i}`);
     target.focus();
     setIsDropdown(prevArr => {
@@ -33,7 +29,6 @@ export default function Room(props) {
 
   function handleCloseDropdown(e, i) {
     //const target = document.querySelector(`#plant-${i}`);
-    console.log('blur');
     setIsDropdown(prevArr => {
       const newArr = prevArr.slice();
       newArr.splice(i, 1, false)
