@@ -2,15 +2,18 @@
 
 body {
   margin: 0px;
+  background-color: $midPrimary_opacity30;
 }
 
 #root {
   height: auto;
   width: auto;
   margin: 0px;
+  background-color: none;
 }
 
 #app {
+  background-color: none;
   height: 100%;
   width: 100%;
 }

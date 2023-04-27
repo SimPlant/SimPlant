@@ -22,6 +22,9 @@
   "homepage": "https://github.com/wonderpuss57/SimPlant#readme",
   "dependencies": {
     "@babel/core": "^7.21.4",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.12.2",
     "bcrypt": "^5.1.0",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.3",

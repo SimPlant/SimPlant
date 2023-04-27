@@ -75,7 +75,20 @@ function MainPage() {
   }
 
   async function addPlant(plant){
-    
+    const data = await api.addPlant({
+      ...plant, 
+      user_id : user,
+      room_id : currentRoom._id
+    })
+    const newPlant = await data.json();
+    setPlants(prevPlants=>[...prevPlants,newPlant])
+  }
+  async function deletePlant(id){
+    setPlants(prevPlants=>{
+      const plantArr = prevPlants.slice();
+      return plantArr.filter(p=>p._id !== id)
+    })
+    await api.deletePlant(id);
   }
   
   // hard code userID
@@ -106,9 +119,9 @@ function MainPage() {
   // set current plants, dependent on plants
   useEffect(() => {
     async function initialize() {
-      setCurrentPlants(
-        plants.filter((plant) => plant?.room_id === currentRoom?._id)
-      );
+      setCurrentPlants(()=>{
+        return plants.filter((plant) => Number(plant?.room_id) === currentRoom?._id)
+    })
     }
     initialize();
   }, [plants, currentRoom]);
@@ -120,7 +133,9 @@ function MainPage() {
       <LowerContainer 
         updateRoom={updateRoom} 
         addRoom={addRoom} 
-        currentRoom={currentRoom} 
+        currentRoom={currentRoom}
+        addPlant={addPlant}
+        deletePlant={deletePlant} 
         currentPlants={currentPlants} 
         reorderRoom={reorderRoom}/>
     </div>
