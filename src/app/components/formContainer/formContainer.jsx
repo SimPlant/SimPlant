@@ -42,18 +42,6 @@ const onPlantSubmit = (e) => {
           <option value={2}>Medium</option>
           <option value={1}>Low</option>
         </select>
-        {/* <select name="temperature">
-          <option value={0}>Please Choose a Temperature Level</option>
-          <option value={3}>High</option>
-          <option value={2}>Medium</option>
-          <option value={1}>Low</option>
-        </select>
-        <select name="humidity">
-          <option value={0}>Please Choose a Humidity Level</option>
-          <option value={3}>High</option>
-          <option value={2}>Medium</option>
-          <option value={1}>Low</option>
-        </select> */}
         <button type="submit">Submit</button>
       </form>
 
@@ -64,21 +52,7 @@ const onPlantSubmit = (e) => {
           type="text"
           placeholder="Plant Species"
         ></input>
-        <input
-          name="plantLighting"
-          type="text"
-          placeholder="Lighting Needs"
-        ></input>
-        <input
-          name="plantWatering"
-          type="text"
-          placeholder="Watering Needs"
-        ></input>
-        <input
-          name="plantHumidity"
-          type="text"
-          placeholder="Humidity Needs"
-        ></input>
+        
         <button type="submit">Submit</button>
       </form>
     </div>

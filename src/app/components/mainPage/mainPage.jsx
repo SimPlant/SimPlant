@@ -24,24 +24,22 @@ function MainPage() {
   const [currentPlants, setCurrentPlants] = useState([]);
   const [user,setUser] = useState(null);
   
-  /*
-  function getAccountData() {
-    return new Promise((resolve) => {
-      //      resolve([]);
+  // function getAccountData() {
+  //   return new Promise((resolve) => {
+  //     //      resolve([]);
       
-      resolve({
-        rooms: [
-          { _id: 1, name: 'Living Room' },
-          { _id: 2, name: 'Kitchen' },
-        ],
-        plants: [
-          { _id: 1, room_id: 1, species: "Big Ol' Cactus" },
-          { _id: 2, room_id: 2, species: "Just a li'l guy" },
-        ]
-      });
-    });
-  }
-  */
+  //     resolve({
+  //       rooms: [
+  //         { _id: 1, name: 'Living Room' },
+  //         { _id: 2, name: 'Kitchen' },
+  //       ],
+  //       plants: [
+  //         { _id: 1, room_id: 1, species: "Big Ol' Cactus" },
+  //         { _id: 2, room_id: 2, species: "Just a li'l guy" },
+  //       ]
+  //     });
+  //   });
+  // }
 
   //come back to figure out what happens when you have rooms with the same name
   function changeCurrentRoom(roomID){
@@ -84,7 +82,7 @@ function MainPage() {
   const userID = 1;
   // will need to make async
   
-  // useEffect for Rooms and Plants
+//  useEffect for Rooms and Plants
   useEffect(() => {
     async function initialize() { 
       const accountData = await api.getUserState(userID);

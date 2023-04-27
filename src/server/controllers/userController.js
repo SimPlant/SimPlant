@@ -31,7 +31,7 @@ userController.getAllUsers = async (req,res,next) => {
     res.locals.users =  result.rows;
     return next();
   } catch (error) {
-    return next(errorCreator('getUser', error));
+    return next(errorCreator('getAllUsers', error));
   }
 }
 
@@ -53,7 +53,7 @@ userController.getState = async (req, res, next) => {
     console.log(res.locals.data);
     return next();
   } catch (error) {
-    return next(errorCreator('getUser', error));
+    return next(errorCreator('getUserState', error));
   }
 }
 
