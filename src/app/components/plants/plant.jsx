@@ -23,6 +23,11 @@ if (props?.plant){
   } = props.plant);
 }
 
+  function handleDeletePlant (e){
+    const plantID = Number(e.target.parentNode.getAttribute('value'));
+    props.deletePlant(plantID);
+  }
+
   return(
       <>
         <p className="title">Name: {common_name}</p>
@@ -32,9 +37,9 @@ if (props?.plant){
             <p>Species: {species}</p>
             <p>Water every {days_between_watering} days</p>
             <p>Light: {light}/10</p>
-            <button className="delete">Delete</button>
           </>
         }
+        <button onClick={handleDeletePlant}>Delete</button>
       </>
   );
 }
