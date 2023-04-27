@@ -38,14 +38,14 @@ export default function Room(props) {
 
   const plants = props.currentPlants.map((plant,i) => {
     return (
-      <Draggable draggableId={plant?._id.toString()} key={plant?._id} index={i}>
+      <Draggable draggableId={`plant-${i}`} key={i} index={i}>
         {(provided)=>{
           return (
             <div
               {...provided.dragHandleProps}
               {...provided.draggableProps}
               ref={provided.innerRef}
-              value={i}
+              value={plant?._id}
               className={`plant${isDropdown.length && isDropdown[i] ? ' plant-dropdown' : ''}`}
               onClick={e => handleOpenDropdown(e, i)}
               tabIndex="-1"
@@ -55,6 +55,7 @@ export default function Room(props) {
               <Plant
                 plant={plant} 
                 isDropdown ={isDropdown?.length ? isDropdown[i] : false}
+                deletePlant={props.deletePlant}
               />
             </div>
             )
