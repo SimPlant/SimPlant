@@ -24,16 +24,17 @@ if (props?.plant){
 }
 
   return(
-      <p className="title">Name: {common_name}</p>
-      <img className= "plant-img" src={image}></img>
-      { isDropdown && 
-        <>
-          <p>Species: {species}</p>
-          <p>Water every {days_between_watering} days</p>
-          <p>Light: {light}/10</p>
-          <button className="delete">Delete</button>
-        </>
-      }
+      <>
+        <p className="title">Name: {common_name}</p>
+        <img className= "plant-img" src={image}></img>
+        { props.isDropdown && 
+          <>
+            <p>Species: {species}</p>
+            <p>Water every {days_between_watering} days</p>
+            <p>Light: {light}/10</p>
+            <button className="delete">Delete</button>
+          </>
+        }
       </>
   );
 }
