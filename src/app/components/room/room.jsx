@@ -21,20 +21,20 @@ export default function Room(props) {
 
   return (
     <>
-    <div id="room">
-      {props.currentPlants.length !== 0 && plants}
-    </div>
-    
-    <div id="room-settings">
-      <form onChange={onSettingChange}>
-        <h4>Light Levels</h4>
-        <select value={props.currentRoom ? props.currentRoom.light : 0} name="light">
-            <option value={3}>High</option>
-            <option value={2}>Medium</option>
-            <option value={1}>Low</option>
-          </select>
-      </form>
-    </div>
+      <div id="room">
+        {props.currentPlants.length !== 0 && plants}
+      </div>
+      
+      <div id="room-settings">
+        <form onChange={onSettingChange}>
+          <h4>Light Levels</h4>
+          <select value={props.currentRoom ? props.currentRoom.light : 0} name="light">
+              <option value={3}>High</option>
+              <option value={2}>Medium</option>
+              <option value={1}>Low</option>
+            </select>
+        </form>
+      </div>
     </>
     );
 }

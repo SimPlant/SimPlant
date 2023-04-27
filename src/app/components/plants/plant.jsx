@@ -1,41 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './plantStyle.scss'
 
 const Plant = (props) => {
   // state for modal functionality
   const [isDropdown, setIsDropdown] = useState(false);
  
-let species;
+let common_name;
 let watering_frequency_per_week;
-let humidity;
 let light;
+let species;
+
 
 if (props?.plant){
   ({ species, 
+    common_name,
     watering_frequency_per_week, 
-    humidity, 
     light 
   } = props.plant);
 }
+// state tells div what to render
 
   function openDropdown(e) {
     e.target.focus();
-    if (isDropdown) {
-      e.target.classList.toggle('plant-dropdown');
-    }
     setIsDropdown(true);
   }
 
-  function closeDropdown(e){
-    if (!isDropdown) {
-      e.target.classList.toggle('plant-dropdown');
-    }
+  function closeDropdown() {
     setIsDropdown(false);
   }
 
+
   return(
-    <div className='plant' onClick={openDropdown} tabIndex="-1" onBlur={closeDropdown}>
-      <p className="species">Species: {species}</p>
+    <div className={`plant ${isDropdown ? 'plant-dropdown' : ''}`} onClick={openDropdown} tabIndex="-1" onBlur={closeDropdown}>
+      <p className="species">Name: {common_name}</p>
       <img className= "plant-img" src="https://em-content.zobj.net/thumbs/160/apple/271/potted-plant_1fab4.png"></img>
       { isDropdown && 
         <>
