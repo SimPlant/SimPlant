@@ -42,8 +42,8 @@ userController.getState = async (req, res, next) => {
       'rooms', ARRAY_REMOVE(array_agg(DISTINCT b.*), NULL), 
       'plants', ARRAY_REMOVE(array_agg(DISTINCT c.*), NULL)
     ) AS state
-    FROM public.user AS a
-    LEFT JOIN public.room AS b ON a._id = b.user_id
+    FROM public.users AS a
+    LEFT JOIN public.rooms AS b ON a._id = b.user_id
     LEFT JOIN public.plants AS c ON b._id = c.room_id
     WHERE a._id = $1
     GROUP BY a._id;
@@ -53,7 +53,7 @@ userController.getState = async (req, res, next) => {
     console.log(res.locals.data);
     return next();
   } catch (error) {
-    return next(errorCreator('getUserState', error));
+    return next(errorCreator('getState', error));
   }
 }
 
