@@ -9,7 +9,7 @@
 }
 
 .plant {
-  height: 255px;
+  height: 170px;
   width: 170px;
   background-color: $lightPrimary;
   padding: 5px;
@@ -17,6 +17,10 @@
   border-radius: $borderRadius;
   text-align: center;
   box-shadow: 0 2px 8px 1px $shadow;
+}
+
+.plant-dropdown {
+  height: 255px;
 }
 
 .plant-img {
