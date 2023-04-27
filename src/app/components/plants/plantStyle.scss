@@ -12,28 +12,21 @@
   transition: min-height 0.5s;
   min-height: 50px;
   height: auto;
-  max-height: 200px;
+  max-height: 170px;
   width: 170px;
-  background-color: $midPrimary;
   padding: 5px;
   padding-top: 3px;
   margin: 10px;
   border-radius: $borderRadius;
   text-align: center;
-  box-shadow: 0 2px 8px 1px $shadow;
   z-index: 1;
 }
-/*
-.plant:hover {
-  height: 175px;
-  width: 175px;
-  transition: width 0.4s, height 0.4s;
-}
-*/
+
 .plant-dropdown {
-  transition: max-height 0.5s;
+  transition: max-height 0.5s, background-color 0.5s;
+  background-color: $midPrimary;
   height: auto;
-  max-height: 400px;
+  max-height: 310px;
   min-height: 200px;
 }
 
@@ -42,7 +35,19 @@
   width: 60%;
   border-radius: 50%;
   box-shadow: 0 2px 8px 1px $shadow;
+  border: $secondary 5px solid;
+}
+
+.plant-img:hover {
+  width: 63%;
+}
+
+.plant-dropdown .plant-img {
   border: $darkPrimary_opacity30 1px solid;
+}
+
+.plant-dropdown .plant-img:hover {
+  width: 60%;
 }
 
 .plant > p.title {
@@ -52,21 +57,30 @@
   font-family: 'Happy Marker', sans-serif;
 }
 
-.plant > p, .plant .delete{
+.plant > p, .delete {
   animation: fadeIn 0.5s ease;
   font-size: 12px;
   color: $secondaryBlack_opacity10;
   font-family: 'BP Replay', sans-serif;
 }
 
-.plant .delete {
-  background-color: $secondary_opacity10;
+.delete {
+/*  background-color: $secondary_opacity10; */
   border-radius: $borderRadius;
   border: none;
   box-shadow: 0 2px 8px 1px $shadow;
   padding: 10px;
-  color: $secondaryWhite;
+/*  color: $secondaryWhite; */
+  color: $secondary;
+  background-color: inherit;
+  border: $secondary_opacity30 5px solid;
   font-family: 'Happy Marker', sans-serif;
+}
+
+.delete:hover {
+  background-color: $secondary_opacity10;
+  color: $secondaryWhite;
+  border: none 5px solid;
 }
 
 @keyframes fadeIn {
