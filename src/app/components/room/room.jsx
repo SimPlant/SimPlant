@@ -45,7 +45,7 @@ export default function Room(props) {
               {...provided.dragHandleProps}
               {...provided.draggableProps}
               ref={provided.innerRef}
-              value={i}
+              value={plant?._id}
               className={`plant${isDropdown.length && isDropdown[i] ? ' plant-dropdown' : ''}`}
               onClick={e => handleOpenDropdown(e, i)}
               tabIndex="-1"
@@ -55,6 +55,7 @@ export default function Room(props) {
               <Plant
                 plant={plant} 
                 isDropdown ={isDropdown?.length ? isDropdown[i] : false}
+                deletePlant={props.deletePlant}
               />
             </div>
             )

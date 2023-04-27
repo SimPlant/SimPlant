@@ -7,23 +7,21 @@ export default function FormContainer(props) {
     e.preventDefault();
     let form = new FormData(e.target)
     form = Object.fromEntries(form.entries());
-    //form looks like {name:'roomname', light:'3'...} '3' is a string
-    //convert to {name:'roomname',light:3...} 3 is a number
-    //use isNaN(arg);-> true or false
     for (const property in form) {
       if (!isNaN(Number(form[property]))) {
         form[property] = Number(form[property])
       }
     }
     props.addRoom(form);
-    // console.log(Object.fromEntries(form.entries()));
   }
 
 const onPlantSubmit = (e) => {
   e.preventDefault();
   let form = new FormData(e.target);
   form = Object.fromEntries(form.entries());
-  console.log("plant form: ", form)
+  const newStr = form.query.replace(/\s+/g, "+");
+  form.query = newStr;
+  props.addPlant(form);
 }
 
   return (
@@ -37,7 +35,7 @@ const onPlantSubmit = (e) => {
           placeholder="Room Name" 
         ></input>
         <select name="light">
-          <option value={0}>Please Choose a Lighting Level</option>
+          <option value={1}>Please Choose a Lighting Level</option>
           <option value={3}>High</option>
           <option value={2}>Medium</option>
           <option value={1}>Low</option>
@@ -48,11 +46,10 @@ const onPlantSubmit = (e) => {
       <form className="plantForm" onSubmit={onPlantSubmit}>
         <div className="formTitle">ADD PLANT</div>
         <input
-          name="plantSpecies"
+          name="query"
           type="text"
           placeholder="Plant Species"
         ></input>
-        
         <button type="submit">Submit</button>
       </form>
     </div>
