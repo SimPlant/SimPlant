@@ -2,8 +2,6 @@
 -- psql -d <elephant-url> -f src/server/simPlant_postgres_create.sql
 
 
-psql -d postgres://xydyryqw:CinsxrYBeuGizT9krpmsCaaTtNJIk3N_@kashin.db.elephantsql.com/xydyryqw  -f src/server/simPlant_postgres_create.sql
-
 -- plants
 -- add common name to plant
 -- watering frequency 1-3
