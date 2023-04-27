@@ -3,7 +3,6 @@ import './plantStyle.scss'
 
 const Plant = (props) => {
   // state for modal functionality
-  const [isDropdown, setIsDropdown] = useState(false);
  
 let common_name;
 let days_between_watering;
@@ -23,19 +22,8 @@ if (props?.plant){
     light 
   } = props.plant);
 }
-// state tells div what to render
-
-  function openDropdown(e) {
-    e.target.focus();
-    setIsDropdown(true);
-  }
-
-  function closeDropdown() {
-    setIsDropdown(false);
-  }
 
   return(
-    <div className={`plant ${isDropdown ? 'plant-dropdown' : ''}`} onClick={openDropdown} tabIndex="-1" onBlur={closeDropdown}>
       <p className="title">Name: {common_name}</p>
       <img className= "plant-img" src={image}></img>
       { isDropdown && 
@@ -46,7 +34,7 @@ if (props?.plant){
           <button className="delete">Delete</button>
         </>
       }
-    </div>
+      </>
   );
 }
 

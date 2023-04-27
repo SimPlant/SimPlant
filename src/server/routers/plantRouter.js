@@ -35,7 +35,7 @@ router.delete('/:id', plantController.deletePlantById, (req, res) => {
   res.status(200).json(res.locals.dbPlant);
 });
 
-router.patch('/:id', plantController.updatePlantById, (req, res) => {
+router.put('/:id', plantController.updatePlantById, (req, res) => {
   res.status(200).json(res.locals.dbPlant);
 });
 // router.put((req, res) => {});
