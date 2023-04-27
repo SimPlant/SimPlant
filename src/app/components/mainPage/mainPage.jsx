@@ -47,13 +47,30 @@ function MainPage() {
   function changeCurrentRoom(roomID){
     setCurrentRoom(rooms.find(room=> room._id === Number(roomID)));
   }
+
   //come back to it once backend is fleshed out ************
   async function addRoom(roomObj) {
-    console.log({...roomObj, user_id:user});
     const data = await api.addRoom({...roomObj, user_id: user})
     const newRoom = await data.json();
-    console.log('after invocation', newRoom);
     setRooms(prevRooms => [newRoom, ...prevRooms]);
+  }
+
+  async function deleteRoom(){
+    const {_id} = currentRoom;
+    setRooms(prevRooms=> prevRooms.filter(room=>room._id !== _id))
+    await api.deleteRoom(_id);
+  }
+
+  //built only for light
+  async function updateRoom(light){
+    setRooms(prevRooms => {
+      const current = [];
+      const restOfRooms = [];
+      prevRooms.forEach(room=> room._id === currentRoom._id ?
+        current.push({...room,light}) :
+        restOfRooms.push(room));
+      return current.concat(restOfRooms);
+      })
   }
 
   async function addPlant(plant){
@@ -70,11 +87,12 @@ function MainPage() {
       const accountData = await api.getUserState(userID);
       const data = await accountData.json();
       setUser(data._id);
-      setRooms(data.state.rooms);
+      setRooms(data.state.rooms.reverse());
       setPlants(data.state.plants);
     }
     initialize();
   }, []);
+
   // any time rooms changes, this useEffect runs
   useEffect(() => {
 
@@ -96,8 +114,9 @@ function MainPage() {
 
   return (
     <div className="page">
-      <RoomMenu changeCurrentRoom={changeCurrentRoom} rooms={rooms} />
-      <LowerContainer  addRoom={addRoom} currentRoom={currentRoom} currentPlants={currentPlants} />
+      <button onClick ={deleteRoom}>delete current room</button>
+      <RoomMenu changeCurrentRoom={changeCurrentRoom} rooms={rooms} currentRoom={currentRoom}/>
+      <LowerContainer updateRoom={updateRoom} addRoom={addRoom} currentRoom={currentRoom} currentPlants={currentPlants} />
     </div>
   );
 }
