@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './roomStyle.scss';
 import Plant from '../plants/plant.jsx';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
@@ -11,20 +11,51 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 // };
 
 export default function Room(props) {
+  const [isDropdown, setIsDropdown] = useState([]);
+
+  useEffect(() => {
+    setIsDropdown(props.currentPlants.map(p => false));
+  }, [props.currentPlants]);
+
+  function handleOpenDropdown(e, i) {
+    const target = document.querySelector(`#plant-${i}`);
+    target.focus();
+    setIsDropdown(prevArr => {
+      const newArr = prevArr.slice();
+      newArr.splice(i, 1, true)
+      return newArr;
+      })
+  }
+
+  function handleCloseDropdown(e, i) {
+    //const target = document.querySelector(`#plant-${i}`);
+    setIsDropdown(prevArr => {
+      const newArr = prevArr.slice();
+      newArr.splice(i, 1, false)
+      return newArr;
+    })
+  }
+
   const plants = props.currentPlants.map((plant,i) => {
     return (
       <Draggable draggableId={plant?._id.toString()} key={plant?._id} index={i}>
         {(provided)=>{
           return (
             <div
-            {...provided.dragHandleProps}
-            {...provided.draggableProps}
-            ref={provided.innerRef}
-            className='plant'
+              {...provided.dragHandleProps}
+              {...provided.draggableProps}
+              ref={provided.innerRef}
+              value={i}
+              className={`plant${isDropdown.length && isDropdown[i] ? ' plant-dropdown' : ''}`}
+              onClick={e => handleOpenDropdown(e, i)}
+              tabIndex="-1"
+              onBlur={e => handleCloseDropdown(e, i)}
+              id={`plant-${i}`}
             >
               <Plant
                 plant={plant} 
-                />
+                isDropdown ={isDropdown?.length ? isDropdown[i] : false}
+              />
             </div>
             )
 
@@ -38,6 +69,7 @@ export default function Room(props) {
     props.updateRoom(lightVal);
   }
   function handleOnDragEnd(result){
+    if(!result.destination){return;}
     const arr = props.currentPlants.slice();
       //grab the reordered item (remove from arr)
     const [reorderedItem] = arr.splice(result.source.index,1);
