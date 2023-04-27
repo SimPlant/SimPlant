@@ -19,8 +19,28 @@ api.addUser = async (body) => {
 //get state for user
 api.getUserState = async (user_id) => {
   // return object has {username: string, state: {rooms: [roomObj], plants: [plantObj]}  }
-  // roomObj example {"_id": 1,  "name": "Living Room",  "light": 5,  "humidity": 10,  "temperature": 10,  "user_id": 1}
-  // plantObj example {"_id": 1, "species": "Aloe Vera", "watering_frequency_per_week": 1, "humidity": 10, "light": 10, "user_id": 1, "room_id": 1}
+  // // roomObj example {
+  //               "_id": 1,
+  //               "name": "Living Room",
+  //               "light": 2,
+  //               "user_id": 1
+  //           },
+  
+  //   plantObj example {
+  //     "_id": 3,
+  //     "nickname": null,
+  //     "species": "Monstera deliciosa",
+  //     "common_name": "Swiss cheese plant",
+  //     "watering_frequency": 2,
+  //     "days_between_watering": 14,
+  //     "full_sun": true,
+  //     "part_sun": true,
+  //     "full_shade": false,
+  //     "notes": null,
+  //     "image": "https://perenual.com/storage/species_image/5257_monstera_deliciosa/thumbnail/4630938853_623dc33137_b.jpg",
+  //     "user_id": "1",
+  //     "room_id": "2"
+  // }
   try {
     return await fetch(`/api/user/${user_id}/state`)
   } catch (err){
@@ -45,7 +65,8 @@ api.updateUser = async (body) => {
 
 //addPlant
 api.addPlant = async (body) => {
-  // const { species, watering_frequency_per_week, humidity, light, user_id, room_id } = req.body
+  // const {query , user_id, room_id } = req.body
+  //query is either scientific name or common name. Can be any part of it
   try {
     return await fetch('api/plant', {
     method: "POST",
@@ -71,7 +92,7 @@ api.deletePlant = async (plantID) => {
 
 //addRoom
 api.addRoom = async (body) => {
-  //const { name, light, humidity, temperature, user_id } = req.body;
+  //const { name, light, user_id } = req.body;
   try {
     return await fetch('api/room', {
     method: "POST",
@@ -97,7 +118,7 @@ api.deleteRoom = async (roomID) => {
 
 //updateRoom
 api.updateRoom = async (body) => {
-  //const { _id, name, light, humidity, temperature, user_id } = req.body;
+  //const { _id, name, light, user_id } = req.body;
   try {
     return await fetch(`api/room/${body._id}`, {
     method: "PUT",
