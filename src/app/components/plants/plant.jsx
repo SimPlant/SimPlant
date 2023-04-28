@@ -26,7 +26,7 @@ let { species,
 
   return(
       <>
-        <p className="title">Name: {common_name}</p>
+        <p className="title">{common_name}</p>
         <img className= "plant-img" src={props?.plant.image || "https://em-content.zobj.net/thumbs/160/apple/271/potted-plant_1fab4.png"}></img>
         { props.isDropdown && 
           <>

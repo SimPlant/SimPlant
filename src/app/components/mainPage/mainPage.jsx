@@ -138,7 +138,7 @@ function MainPage() {
         currentPlants={currentPlants} 
         reorderRoom={reorderRoom}/>
         <div className='buttonContainer'>
-          <button onClick ={deleteRoom}>delete current room</button>
+          <button onClick ={deleteRoom}>Delete Current Room</button>
         </div>
     </div>
   );
