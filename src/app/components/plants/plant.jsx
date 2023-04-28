@@ -4,6 +4,10 @@ import './plantStyle.scss'
 const Plant = (props) => {
   // state for modal functionality
  
+let common_name;
+let days_between_watering;
+let light;
+let species;
 
 
 // props?.plant?.image
@@ -22,15 +26,11 @@ let { species,
   } = props.plant;
 
 
-  function handleDeletePlant (e){
-    const plantID = Number(e.target.parentNode.getAttribute('value'));
-    props.deletePlant(plantID);
-  }
 
   return(
-      <div>
-        <p className="title"> {common_name}</p>
-        <img className= "plant-img" src={image ? image : "https://em-content.zobj.net/thumbs/160/apple/271/potted-plant_1fab4.png"}></img>
+      <>
+        <p className="title">Name: {common_name}</p>
+        <img className= "plant-img" src={props?.plant.image || "https://em-content.zobj.net/thumbs/160/apple/271/potted-plant_1fab4.png"}></img>
         { props.isDropdown && 
           <>
             <p>Species: {species}</p>
@@ -38,10 +38,10 @@ let { species,
             <p>Good in {full_sun ? 'Full sun ' : ''}
             {part_sun ? 'Part sun ' : ''}
             {full_shade ? 'Full shade' : ''}</p>
+            <button onMouseDown={e => props.deletePlant(props.plant._id)} className="delete">Delete</button>
           </>
         }
-        <button onClick={handleDeletePlant}>Delete</button>
-      </div>
+      </>
   );
 }
 
