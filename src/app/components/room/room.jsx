@@ -9,6 +9,16 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 //   humidity: 70,
 //   light: 5,
 // };
+// /* {props.currentRoom && <div id="room-settings">
+//       <form onChange={onSettingChange}>
+//         <h4>Light Levels</h4>
+//         <select value={props.currentRoom ? props.currentRoom.light : 0} name="light">
+//             <option value={3}>High</option>
+//             <option value={2}>Medium</option>
+//             <option value={1}>Low</option>
+//           </select>
+//       </form>
+//     </div>} */
 
 export default function Room(props) {
   const [isDropdown, setIsDropdown] = useState([]);
@@ -42,9 +52,10 @@ export default function Room(props) {
         {(provided)=>{
           return (
             <div
+              ref={provided.innerRef}
               {...provided.dragHandleProps}
               {...provided.draggableProps}
-              ref={provided.innerRef}
+              
               value={plant?._id}
               className={`plant${isDropdown.length && isDropdown[i] ? ' plant-dropdown' : ''}`}
               onClick={e => handleOpenDropdown(e, i)}
@@ -53,13 +64,13 @@ export default function Room(props) {
               id={`plant-${i}`}
             >
               <Plant
+                currentRoom={props.currentRoom}
                 plant={plant} 
                 isDropdown ={isDropdown?.length ? isDropdown[i] : false}
                 deletePlant={props.deletePlant}
               />
             </div>
             )
-
         }}
       </Draggable>
     );
@@ -80,31 +91,19 @@ export default function Room(props) {
   }
 
   return (
-    <>
     <DragDropContext onDragEnd={handleOnDragEnd}>
-      <Droppable droppableId='room'>
-        {(provided) => {
+      <Droppable droppableId='room' direction="horizontal">
+        {(provided,snapshot) => {
           return(
-            <div id="room" {...provided.droppableProps} ref={provided.innerRef}>
+            <div id="room" 
+              {...provided.droppableProps} 
+              ref={provided.innerRef}>
               {props.currentPlants.length !== 0 && plants}
               {provided.placeholder}
             </div>
           )
-          
         }}
       </Droppable>
     </DragDropContext>
-    
-   {props.currentRoom && <div id="room-settings">
-      <form onChange={onSettingChange}>
-        <h4>Light Levels</h4>
-        <select value={props.currentRoom ? props.currentRoom.light : 0} name="light">
-            <option value={3}>High</option>
-            <option value={2}>Medium</option>
-            <option value={1}>Low</option>
-          </select>
-      </form>
-    </div>}
-    </>
     );
 }

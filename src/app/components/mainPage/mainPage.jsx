@@ -128,7 +128,6 @@ function MainPage() {
 
   return (
     <div className="page">
-      <button onClick ={deleteRoom}>delete current room</button>
       <RoomMenu changeCurrentRoom={changeCurrentRoom} rooms={rooms} currentRoom={currentRoom}/>
       <LowerContainer 
         updateRoom={updateRoom} 
@@ -138,6 +137,9 @@ function MainPage() {
         deletePlant={deletePlant} 
         currentPlants={currentPlants} 
         reorderRoom={reorderRoom}/>
+        <div className='buttonContainer'>
+          <button onClick ={deleteRoom}>Delete Current Room</button>
+        </div>
     </div>
   );
 }
