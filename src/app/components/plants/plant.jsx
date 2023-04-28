@@ -4,10 +4,7 @@ import './plantStyle.scss'
 const Plant = (props) => {
   // state for modal functionality
  
-let common_name;
-let days_between_watering;
-let light;
-let species;
+
 
 
 // props?.plant?.image
