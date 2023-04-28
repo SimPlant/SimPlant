@@ -7,3 +7,18 @@
   background-color: $midPrimary_opacity30; */
   background-color: none;
 }
+
+.buttonContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem;
+
+    button{
+    border-radius: $borderRadius;
+    font-family: 'Vegur';
+    line-height: 2rem;
+    box-shadow: $shadow;
+    background-color: $primaryWhite;
+    }
+}
