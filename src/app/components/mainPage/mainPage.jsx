@@ -86,7 +86,7 @@ function MainPage() {
   async function deletePlant(id){
     setPlants(prevPlants=>{
       const plantArr = prevPlants.slice();
-      return plantArr.filter(p=>p._id !== id)
+      return plantArr.filter(p => p._id !== id)
     })
     await api.deletePlant(id);
   }
