@@ -39,7 +39,12 @@ _Coming soon_!
 
 ## Key Features
 
-_Coming soon_!
+<video src="src/app/assets/demo.mov" controls=true width=600></video>
+
+1. Add a room + lighting level
+2. Add plants to room
+3. Reorder plants
+4. View information for how to care for your plant!
 
 <br>
 
