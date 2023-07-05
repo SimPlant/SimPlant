@@ -12,7 +12,7 @@
 
 <br>
 
-## Create your own SimPlant App
+## Create your own SimPlant App 🌷
 
 ### Prerequisites
 
@@ -45,7 +45,15 @@ _Coming soon_!
 
 ## Questions and Support
 
-_Coming soon_!
+If you have any questions or need help with the project, please don't hesitate to ask! You can <a href="https://github.com/SimPlant-App/SimPlantV2">create an issue</a> on this repo 🌼
+
+<br>
+
+## Tech Stack
+
+<br>
+
+[![JavaScript][JavaScript]][JavaScript-url] [![React][React.js]][React-url] ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white) [![HTML5][HTML5]][HTML5-url] [![SASS][SASS]][SASS-url] ![MUI](https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white) ![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)
 
 <br>
 
@@ -66,36 +74,17 @@ Forked from https://github.com/SimPlant/SimPlant 🪴
 
 <br>
 
-## Tech Stack
-
-<br>
-
-[![JavaScript][JavaScript]][JavaScript-url] [![React][React.js]][React-url] ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white) [![HTML5][HTML5]][HTML5-url] [![SASS][SASS]][SASS-url] ![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)
-
-<br>
-
-## To Do
-
-| Feature                                 | Status |
-| --------------------------------------- | ------ |
-| CSS to SASS                             | ⏳     |
-| PostgreSQL database                     | ⏳     |
-| Write server with Express               | ⏳     |
-| Convert to TypeScript                   | ⏳     |
-| Testing w/ Jest + React Testing Library | ⏳     |
-| Image uploads                           | ⏳     |
-| And more...                             | ⏳     |
-
-- ✅ = Ready to use
-- ⏳ = In progress
-
-<br>
-
 ## License
 
 Distributed under the MIT License.
 
 <br>
+
+Special thanks to furby 🌺
+
+<br>
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrXw0lnSTV05kBNAT7HlIrvrkCYKPDcrp3xpJfoUwUZT2_SFWPIVqHjqwOi2j-WRP66I0&usqp=CAU">
 
 <!-- Logo Links -->
 
